@@ -10,6 +10,7 @@ canvas.height = 960;
 const ctx = canvas.getContext('2d');
 const touch = {type:null,x:null,y:null};
 
+/*
 canvas.addEventListener('touchmove',(event)=>{
   var eventType = event.type;
     
@@ -27,6 +28,7 @@ canvas.addEventListener('touchmove',(event)=>{
   touch.y = y;
     	
 });
+*/
     
 canvas.addEventListener('touchstart',(event)=>{
   var eventType = event.type;
@@ -45,7 +47,7 @@ canvas.addEventListener('touchstart',(event)=>{
   touch.y = y;
     	
 });
-    
+    /*
 canvas.addEventListener('touchend',(event)=>{
   var eventType = event.type;
     
@@ -63,7 +65,7 @@ canvas.addEventListener('touchend',(event)=>{
   touch.y = y;
     	
 });
-
+*/
 canvas.addEventListener('mousedown', (e) => {
       const rect = e.target.getBoundingClientRect();
       
@@ -72,7 +74,7 @@ canvas.addEventListener('mousedown', (e) => {
       touch.type = "touchstart";
 });
 
-
+/*
 function viewportSet() {
   var ww = window.innerWidth;
   var wh = window.innerHeight;
@@ -91,7 +93,7 @@ function viewportSet() {
 window.addEventListener("DOMContentLoaded", viewportSet, false);
 window.addEventListener("resize", viewportSet, false);
 window.addEventListener("orientationchange", viewportSet, false);
-
+*/
 
 
 
