@@ -29,7 +29,7 @@ canvas.addEventListener('touchmove',(event)=>{
     	
 });
 */
-    
+    /*
 canvas.addEventListener('touchstart',(event)=>{
   var eventType = event.type;
     
@@ -47,6 +47,7 @@ canvas.addEventListener('touchstart',(event)=>{
   touch.y = y;
     	
 });
+*/
     /*
 canvas.addEventListener('touchend',(event)=>{
   var eventType = event.type;
@@ -1691,7 +1692,7 @@ class Gamen3 extends Gamen{
 let monitor = new Monitor();
 monitor.gamen = [null , new Gamen2() , new Gamen3()];
 monitor.gamen[0] = new Gamen1();
-canvas.addEventListener('touchstart', () => { monitor.touchevent() });
+//canvas.addEventListener('touchstart', () => { monitor.touchevent() });
 canvas.addEventListener('mousedown', () => { monitor.touchevent() });
 
 
