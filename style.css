@@ -1,0 +1,23 @@
+body {
+    font-size: 15pt;
+    background: black;
+    color: white;
+    padding: 20px;
+}
+
+input{
+  margin: 20px;
+}
+select{
+  margin:  20px;
+}
+
+.ichiran{
+   padding-left: 20px;
+   background: dimgray;
+   line-height: 50px;
+}
+
+.setumeibun{
+  font-size: 12pt;
+}
