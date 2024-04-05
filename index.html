@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=1280px, initial-scale=1">
+
+  <title>HTML</title>
+  
+  <!-- HTML -->
+  
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <canvas id="canvas" style="padding: 15px"></canvas>
+  
+  <hr>
+  
+  <details>
+    <summary style="color: white">
+      jsonファイルの出力・読み込み、タグの登録、ノウハウブックの登録
+    </summary>
+    
+    <hr>
+    
+    <h3>jsonファイルの出力・読み込み</h3>
+    <p class="setumeibun">※ノウハウブックのデータはサイトを離れると消えます。jsonファイルを使って引き継ぐことができます。 </p>
+    <p class="setumeibun">※登録されているノウハウブックが多い場合、分割してダウンロードします。読み込む際はひとつのファイルを上書き読み込みし、残りのファイルを追加読み込みしてください。 </p>
+    <p class="setumeibun">※ファイルがひとつの場合は上書き読み込みをしてください。 </p>
+    上書き読み込み:<input type="file" id="uploadfileInput1"><button class="menubutton" onclick="readjson1()">←に指定したjsonファイルを読み込む</button><br>
+    
+    追加読み込み:<input type="file" id="uploadfileInput2"><button class="menubutton" onclick="readjson2()">←に指定したjsonファイルを読み込む</button><br>
+    
+　　　<button type="button" ng-click="downloadJson();">今現在のデータをjsonファイルにしてダウンロード</button>
+    
+
+    <hr>
+    
+    <h3>タグの登録</h3>
+    <p class="setumeibun">※このサイトではひとつのノウハウブックに5つまでタグをつけることができます。</p>
+    <p class="setumeibun">※タグは絞りこみ検索で使います。</p>
+    <p class="setumeibun">※登録できるタグは20個までで、タグの削除はできません。</p>
+    
+    <input type="text" id="tagTourokuInput" maxlength="12" placeholder="最大文字数は12文字です"><button id="tagTourokuButton" onclick="tagTouroku()">登録</button>
+    <details>
+      <summary>《登録されているタグ一覧》</summary>
+      <div id="tagIchiranDiv" class="ichiran">
+      </div>
+    </details>
+    <hr>
+    
+    <h3>ノウハウブックの登録</h3>
+    
+    アイドル名:<select  id="bookTourokuCharactorSelect"></select>
+    <br>
+    
+    獲得日:<input type="number" min="1000" max="9999" oninput="javascript: this.value = this.value.slice(0, 4);" id="bookTourokuNen">年 
+    <input type="number" min="1" max="12" oninput="javascript: this.value = this.value.slice(0, 2);" id="bookTourokuGatsu">月 
+    <input type="number" min="1"  max="31" oninput="javascript: this.value = this.value.slice(0, 2);" id="bookTourokuNichi">日 
+    <br>
+    
+    Vo:<input type="number" min="0"  max="999" oninput="javascript: this.value = this.value.slice(0, 3);" id="bookTourokuVo">
+    Da:<input type="number" min="0"  max="999" oninput="javascript: this.value = this.value.slice(0, 3);" id="bookTourokuDa">
+    Vi:<input type="number" min="0"  max="999" oninput="javascript: this.value = this.value.slice(0, 3);" id="bookTourokuVi">
+    <br>
+    
+    ノウハウ: <select  id="bookTourokuNouhauNameSelect"></select>
+    Lv: <span id="lvHyoujiSpan">5</span> <input type="range" min="1" max="6" value="5" id="bookTourokuNouhauLv" oninput="javascript: document.getElementById('lvHyoujiSpan').innerText = this.value ;">
+    <button onclick="bookTourokuNouhauTouroku()">ノウハウ追加</button>
+    <div id="tourokuNouhauIchiranDiv" class="ichiran"></div>
+    <br>
+    
+    タグ: <select id="bookTourokuTagSelect"></select>
+    <button onclick="bookTourokuTagTouroku()">タグ追加</button>
+    <div id="tourokuTagIchiranDiv" class="ichiran"></div>
+    <br>
+    
+    <button onclick="bookTouroku()" style="height: 50px; margin-left: 80px; background: darkseagreen">上記内容で登録する</button>
+    <button onclick="bookTourokuInputResetButton()" style="height: 50px; margin-left: 80px; background: palevioletred">入力内容をリセット</button>
+    
+  </details>
+  
+  <hr>
+  
+  <details style="margin-top: 10px;">
+    <summary style="color: white">
+      このサイトの使い方
+    </summary>
+    <button onclick="sample()" style="margin: 30px; height: 50px">サンプルモード</button>
+  </details>
+  <!-- Project -->
+  <script src="data.js"></script>
+  <script src="textClass.js"></script>
+  <script src="main.js"></script>
+  
+</body>
+</html>
