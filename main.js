@@ -9,8 +9,8 @@ canvas.width = 1280;
 canvas.height = 960;
 const ctx = canvas.getContext('2d');
 const touch = {type:null,x:null,y:null};
-
 /*
+
 canvas.addEventListener('touchmove',(event)=>{
   var eventType = event.type;
     
@@ -28,8 +28,7 @@ canvas.addEventListener('touchmove',(event)=>{
   touch.y = y;
     	
 });
-*/
-    /*
+    
 canvas.addEventListener('touchstart',(event)=>{
   var eventType = event.type;
     
@@ -47,8 +46,7 @@ canvas.addEventListener('touchstart',(event)=>{
   touch.y = y;
     	
 });
-*/
-    /*
+    
 canvas.addEventListener('touchend',(event)=>{
   var eventType = event.type;
     
@@ -67,6 +65,7 @@ canvas.addEventListener('touchend',(event)=>{
     	
 });
 */
+
 canvas.addEventListener('mousedown', (e) => {
       const rect = e.target.getBoundingClientRect();
       
@@ -75,7 +74,7 @@ canvas.addEventListener('mousedown', (e) => {
       touch.type = "touchstart";
 });
 
-/*
+
 function viewportSet() {
   var ww = window.innerWidth;
   var wh = window.innerHeight;
@@ -94,7 +93,7 @@ function viewportSet() {
 window.addEventListener("DOMContentLoaded", viewportSet, false);
 window.addEventListener("resize", viewportSet, false);
 window.addEventListener("orientationchange", viewportSet, false);
-*/
+
 
 
 
@@ -106,6 +105,7 @@ class Monitor{
     this.sortBookNums = [[],[],[],[]];  //二次元配列。user.books[n]のnをいれていく。this.sortBookNums[0]にはthis.sortType[0]に対応したならび順にしたものを入れる。ただしsortType[2]とsortType[3]は事前ではなく都度設定する。user.booksに削除したbookがある場合、nullになる。this.getSort()ではnullを飛ばして番号を入れる。
     this.sortTypes = ["当サイト登録順","取得日順","現在表示中のノウハウが多い順","現在非表示のノウハウが少ない順"] //ソート名
     this.sortNum = 1; //現在のソート
+    this.gyakujun = false;  //ソートを逆順にするかどうか
     
     this.sortAndShiboriResult = [];
     
@@ -326,6 +326,7 @@ class Monitor{
     let arr = [].concat(this.sortBookNums[this.sortNum -1]);
     let result1 = [];  //arrからタグ絞りこみ条件に該当するものだけを抜き取った配列
     let result2 = [];  //result1からノウハウ絞りこみ条件に該当するものだけを抜き取った配列
+    let result3 = [];  //逆順にするならresult2を逆順にしたものをいれる配列
     
     //タグ絞りこみ
     if(this.gamen[1].doTagShibori == true){
@@ -452,17 +453,17 @@ class Monitor{
           }
           
           if(kouhoNouhaus.length > 0 && _canThisBook == true){
-            //候補ノウハウをもっていた場合、それが設定レベル以下なら該当しない
-            let kouhoOk = true;
+            //候補ノウハウをひとつももっていないなら該当しない
+            let kouhoOk = false;
             for (var h = 0; h < kouhoNouhaus.length; h++) {
-              let haveThisKouhoNouhauWhichDontHaveNeedLv = false;
+              let haveThisKouhoNouhau = false;
               for (var k = 0; k < _thisBookNouhau.length; k++) {
-                if (_thisBookNouhau[k][0] == kouhoNouhaus[h][0] && _thisBookNouhau[k][1] < kouhoNouhaus[h][1]) {
-                  haveThisKouhoNouhauWhichDontHaveNeedLv = true;
+                if (_thisBookNouhau[k][0] == kouhoNouhaus[h][0] && _thisBookNouhau[k][1] >= kouhoNouhaus[h][1]) {
+                  haveThisKouhoNouhau = true;
                 }
               }
-              if (haveThisKouhoNouhauWhichDontHaveNeedLv == true) {
-                kouhoOk = false;
+              if (haveThisKouhoNouhau == true) {
+                kouhoOk = true;
                 continue;
               }
             }
@@ -476,8 +477,17 @@ class Monitor{
       result2 = [].concat(result1);
     }
     
+    //逆順にするかどうか
+    if(this.gyakujun == true){
+      for (var g = 0; g < result2.length; g++) {
+        result3.push(result2[result2.length -1 -g]);
+      }
+    }else{
+      result3 = [].concat(result2);
+    }
     
-     this.sortAndShiboriResult = result2;
+    
+     this.sortAndShiboriResult = result3;
   }
   
 }
@@ -1231,7 +1241,16 @@ class Gamen2 extends Gamen{
         if (_txt.isTouched(touch)[0] == "touchstart" && _txt.isTouched(touch)[1] == true && this.wait == 0) {
           this.wait = 1;
           setTimeout(() => { this.wait = 0; }, 100);
-          monitor.sortNum = 1;
+          if(monitor.sortNum != 1){
+            monitor.sortNum = 1;
+            monitor.gyakujun = false;
+          }else{
+            if(monitor.gyakujun == true){
+              monitor.gyakujun = false;
+            }else{
+              monitor.gyakujun = true;
+            }
+          }
           monitor.bookReload(false,true);
         }
       };
@@ -1244,7 +1263,16 @@ class Gamen2 extends Gamen{
         if (_txt2.isTouched(touch)[0] == "touchstart" && _txt2.isTouched(touch)[1] == true && this.wait == 0) {
           this.wait = 1;
           setTimeout(() => { this.wait = 0; }, 100);
-          monitor.sortNum = 2;
+          if (monitor.sortNum != 2) {
+            monitor.sortNum = 2;
+            monitor.gyakujun = false;
+          } else {
+            if (monitor.gyakujun == true) {
+              monitor.gyakujun = false;
+            } else {
+              monitor.gyakujun = true;
+            }
+          }
           monitor.bookReload(false,true);
         }
       };
@@ -1257,7 +1285,16 @@ class Gamen2 extends Gamen{
         if (_txt3.isTouched(touch)[0] == "touchstart" && _txt3.isTouched(touch)[1] == true && this.wait == 0) {
           this.wait = 1;
           setTimeout(() => { this.wait = 0; }, 100);
-          monitor.sortNum = 3;
+          if (monitor.sortNum != 3) {
+            monitor.sortNum = 3;
+            monitor.gyakujun = false;
+          } else {
+            if (monitor.gyakujun == true) {
+              monitor.gyakujun = false;
+            } else {
+              monitor.gyakujun = true;
+            }
+          }
           monitor.bookReload(false,true);
         }
       };
@@ -1271,7 +1308,16 @@ class Gamen2 extends Gamen{
         if (_txt4.isTouched(touch)[0] == "touchstart" && _txt4.isTouched(touch)[1] == true && this.wait == 0) {
           this.wait = 1;
           setTimeout(() => { this.wait = 0; }, 100);
-          monitor.sortNum = 4;
+          if (monitor.sortNum != 4) {
+            monitor.sortNum = 4;
+            monitor.gyakujun = false;
+          } else {
+            if (monitor.gyakujun == true) {
+              monitor.gyakujun = false;
+            } else {
+              monitor.gyakujun = true;
+            }
+          }
           monitor.bookReload(false,true);
         }
       };
@@ -1698,7 +1744,7 @@ canvas.addEventListener('mousedown', () => { monitor.touchevent() });
 
 
 function readjson1() {
-  var result = window.confirm('上書き読み込みをしますか?現在のデータは失われます。');
+  var result = window.confirm('上書き読み込みをしますか?\n現在のデータは失われます。');
   if (result == false) { return; }
 
   var file = $('uploadfileInput1').files[0];
@@ -1723,8 +1769,8 @@ function readjson1() {
   reader.readAsText(file);
 }
 
-function readJson2(){
-  var result = window.confirm('追加読み込みをしますか?登録されているタグ数がより多いデータは読み込めません。登録されているタグ名が異なる場合、現在登録されているものに置き換わります。');
+function readjson2(){
+  var result = window.confirm('追加読み込みをしますか?\n登録されているタグ数がより多いデータは読み込めません。\n登録されているタグ名が異なる場合、現在登録されているものに置き換わります。');
   if (result == false) { return; }
   
   var file = $('uploadfileInput2').files[0];
@@ -1807,10 +1853,10 @@ function downloadJson() {
   return;
   
   
-  const blob = new Blob([json], { type: 'application/json' });
+  //const blob = new Blob([json], { type: 'application/json' });
 
   // a 要素の href 属性に Object URL を セット
-  event.currentTarget.href = window.URL.createObjectURL(blob);
+  //event.currentTarget.href = window.URL.createObjectURL(blob);
 }
 
 
