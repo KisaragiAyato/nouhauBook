@@ -1838,6 +1838,7 @@ function downloadJson() {
     for (var j = startNum ; j <= lastNum; j++) {
       _book.push(_books[j]);
     }
+    console.log(_book);
     let _userdate = [
       [].concat(_user.tags),
       [].concat(_book),
@@ -1846,9 +1847,10 @@ function downloadJson() {
     const resultJson = JSON.stringify(_userdate);
     let downLoadLink = document.createElement("a");
     downLoadLink.download = "nouhauKanriData" + dateTxt + "(" + (i +1) + ").json";
-    downLoadLink.href = URL.createObjectURL(new Blob([resultJson], { type: "text.plain" }));
+    downLoadLink.href = URL.createObjectURL(new Blob([resultJson], { type: "application/json" }));
     downLoadLink.dataset.downloadurl = ["text/plain", downLoadLink.download, downLoadLink.href].join(":");
     downLoadLink.click();
+    document.body.removeChild(downLoadLink);
   }
   return;
   
