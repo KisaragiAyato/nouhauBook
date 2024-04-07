@@ -22,29 +22,56 @@
   
   <details>
     <summary style="color: white">
-      jsonファイルの出力・読み込み、タグの登録、ノウハウブックの登録
+      indexedDBへの保存、jsonファイルの出力・読み込み
     </summary>
     
     <hr>
     
-    <h3>jsonファイルの出力・読み込み</h3>
-    ノウハウブックのデータはサイトを離れると消えます。jsonファイルを使って引き継ぐことができます。 </br>
-    登録されているノウハウブックが多い場合、分割してダウンロードします。読み込む際はひとつのファイルを上書き読み込みし、残りのファイルを追加読み込みしてください。 </br>
-    ファイルがひとつの場合は上書き読み込みをしてください。 <br>
-    上書き読み込み:<input type="file" id="uploadfileInput1"><button class="menubutton" onclick="readjson1()">←に指定したjsonファイルを読み込む</button><br>
+    <h3>indexedDBへの保存</h3>
+    ・下のボタンを押してindexedDBにデータを保存すると、ノウハウブックのデータや表示設定のデータがブラウザに保存されます。 <br>
+    ・indexedDBを利用する場合は保存し忘れに注意しましょう。 <br>
+    ・また、このサイトはプログレッシブウェブアプリ（PWA）に対応しています。ブラウザからPWAをインストールすることでオフラインでも利用できます。(詳しいインストール方法等は検索してください。)<br>
+    <br>
+    <button onclick="indexedDBAdd()">indexedDBに保存する</button>
     
-    追加読み込み:<input type="file" id="uploadfileInput2"><button class="menubutton" onclick="readjson2()">←に指定したjsonファイルを読み込む</button><br>
+    
+    <hr>
+    
+    <h3>jsonファイルの出力・読み込み</h3>
+    ・jsonファイルを使ってデータを引き継ぐことも可能です。 <br>
+    ・バックアップを取りたい場合や端末間でデータを移動させたい場合に適しています。<br>
+    ・登録されているノウハウブックが多い場合、分割してダウンロードします。読み込む際はひとつのファイルを上書き読み込みし、残りのファイルを追加読み込みしてください。 </br>
+    ・ファイルがひとつの場合は上書き読み込みをしてください。 <br>
+    ・「indexedDBに保存する」ボタンを押さない限り、indexedDBに上書きされることはありません。 <br>
+    <br>
+    上書き読み込み:<input type="file" id="uploadfileInput1"><button class="menubutton" onclick="readjson1()">←に指定したjsonファイルを読み込む</button><br> <br>
+    
+    追加読み込み:<input type="file" id="uploadfileInput2"><button class="menubutton" onclick="readjson2()">←に指定したjsonファイルを読み込む</button><br> <br>
     
 　　　<button type="button" onclick="downloadJson();">今現在のデータをjsonファイルにしてダウンロード</button>
     
 
+
+    
+    
+  </details>
+  
+  
+  <hr>
+  
+  
+  <details style= "margin-top: 10px;">
+    <summary style = "color:white;">
+      タグの登録、ノウハウブックの登録
+    </summary>
     <hr>
     
     <h3>タグの登録</h3>
-    このサイトではひとつのノウハウブックに5つまでタグをつけることができます。</br>
-    タグは絞りこみ検索で使います。</br>
-    登録できるタグは20個までで、タグの削除はできません。</br>
-    下の《登録されているタグ一覧》からタグ名を変更できます。 <br>
+    ・このサイトではひとつのノウハウブックに5つまでタグをつけることができます。</br>
+    ・タグは絞りこみ検索で使います。</br>
+    ・登録できるタグは20個までで、タグの削除はできません。</br>
+    ・下の《登録されているタグ一覧》からタグ名を変更できます。 <br>
+    <br>
     
     <input type="text" id="tagTourokuInput" maxlength="12" placeholder="最大文字数は12文字です"><button id="tagTourokuButton" onclick="tagTouroku()">登録</button>
     <details>
@@ -76,7 +103,7 @@
     <br>
     
     タグ: <select id="bookTourokuTagSelect"></select>
-    <button onclick="bookTourokuTagTouroku()">タグ追加</button><span>　　　(※タグの登録は後からでも可能です)</span> 
+    <button onclick="bookTourokuTagTouroku()">タグ追加</button><span>　　　(※タグの登録・変更は後からでも可能です)</span> 
     <div id="tourokuTagIchiranDiv" class="ichiran"></div>
     <br>
     
@@ -85,7 +112,9 @@
     
   </details>
   
+  
   <hr>
+  
   
   <details style="margin-top: 10px;">
     <summary style="color: white">
@@ -172,7 +201,7 @@
      
      <h3>5.その他の機能</h3>
      メニュー画面のノウハウブック表示数変更をタップすると、ノウハウブック画面の表示を3×3と4×4とで切り替えられます。 <br>
-     このサイトはプログレッシブウェブアプリ（PWA）に対応しています。ブラウザからPWAをインストールすることでオフラインでも利用できます。<br>
+     
       
       
     </div>
