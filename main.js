@@ -1833,12 +1833,11 @@ function downloadJson() {
   for(var i=0;i<num;i++){
     let startNum = booksuuAtOneJsonFile * i ;
     let lastNum = booksuuAtOneJsonFile * (i +1) -1;
-    if(i == num -1 && _books.length % booksuuAtOneJsonFile != 0)lastNum = _books.length % booksuuAtOneJsonFile;
+    if(i == num -1 && _books.length % booksuuAtOneJsonFile != 0)lastNum = _books.length % booksuuAtOneJsonFile -1;
     let _book = [];
     for (var j = startNum ; j <= lastNum; j++) {
       _book.push(_books[j]);
     }
-    console.log(_book);
     let _userdate = [
       [].concat(_user.tags),
       [].concat(_book),
