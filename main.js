@@ -74,7 +74,7 @@ canvas.addEventListener('mousedown', (e) => {
       touch.type = "touchstart";
 });
 
-/*
+
 function viewportSet() {
   var ww = window.innerWidth;
   var wh = window.innerHeight;
@@ -93,7 +93,7 @@ function viewportSet() {
 window.addEventListener("DOMContentLoaded", viewportSet, false);
 window.addEventListener("resize", viewportSet, false);
 window.addEventListener("orientationchange", viewportSet, false);
-*/
+
 
 
 
@@ -605,6 +605,7 @@ class Gamen1 extends Gamen{
   
   setScene(_sceneNum){
     this.scene = _sceneNum;
+    
     if(_sceneNum == 0){
       this.sceneItems = [];
       this.timelyItems = [];
@@ -952,6 +953,10 @@ class Gamen1 extends Gamen{
       this.sceneItems.push(new Text("タグ名", 50, 45 - 30 + 40 * 2, 16));
       var _rect = new Rect(50 - 8, 45 - 30 + 40 * 2 - 7, 530, 30)
       this.sceneItems.push(_rect);
+    }
+    
+    if (userOkiba.length > 0) {
+      this.sceneItems.push(new Text("現在サンプルモードです。",16, 0, 16));
     }
     
   }
@@ -1838,6 +1843,7 @@ function downloadJson() {
     for (var j = startNum ; j <= lastNum; j++) {
       _book.push(_books[j]);
     }
+    console.log(_book);
     let _userdate = [
       [].concat(_user.tags),
       [].concat(_book),
@@ -2058,27 +2064,101 @@ function bookTourokuInputReset(){
 }
 
 
-function mainLoop() {
+
+
+  //indexedDBに関する処理
+function indexedDBRead(){
+
+  var dbName = 'nouhauBookKanriDB';
+  var dbVersion = 1;
+  var kerValue = 'userData';
+
+  var openReq = indexedDB.open(dbName,dbVersion);
+  //　DB名を指定して接続。DBがなければ新規作成される。
+
+  openReq.onupgradeneeded = function(event) {
+    //onupgradeneededは、DBのバージョン更新(DBの新規作成も含む)時のみ実行
+    console.log('db upgrade');
+    var db = event.target.result;
+    var storeName = 'nouhauBookKanriUser';
+    db.createObjectStore(storeName, { keyPath: 'id' })
+  }
+  openReq.onsuccess = function(event) {
+   //onupgradeneededの後に実行。更新がない場合はこれだけ実行
+    console.log('db open success');
+    var storeName = 'nouhauBookKanriUser';
+    var db = event.target.result;
+    var trans = db.transaction(storeName, 'readonly');
+    var store = trans.objectStore(storeName);
+    var getReq = store.get('userData');
+  
+    getReq.onsuccess = function(event) {
+      var  _user = event.target.result.data; // event.resultは{id : 'userData', data : userObj}
+      if(userOkiba.length > 0)userOkiba = [];
+      user = _user;
+      monitor.bookReload(true);
+    }
   
   
-  
-  
-  monitor.bookReload();
-  //requestAnimationFrame(mainLoop);
+    // 接続を解除する
+    db.close();
+  }
+  openReq.onerror = function(event) {
+    // 接続に失敗
+    console.log('db open error');
+  }
+
 }
 
-window.onload = () =>{
+function indexedDBAdd(){
+  let _con = window.confirm("ブラウザのindexedDBにデータを保存しますか?");
+  if(_con == false)return;
+  
+  var dbName = 'nouhauBookKanriDB';
+  var _user = user;
+  if (userOkiba.length > 0) _user = userOkiba[0];
+  var data = {id:'userData',data:_user};
+  
+  var storeName = 'nouhauBookKanriUser';
+  
+  var openReq = indexedDB.open(dbName);
+  
+  openReq.onsuccess = function(event) {
+    var db = event.target.result;
+    var trans = db.transaction(storeName, 'readwrite');
+    var store = trans.objectStore(storeName);
+    var putReq = store.put(data);
+  
+    putReq.onsuccess = function() {
+      console.log('put data success');
+    }
+  
+    trans.oncomplete = function() {
+      // トランザクション完了時(putReq.onsuccessの後)に実行
+      console.log('transaction complete');
+      window.alert("indexedDBへの保存が完了しました");
+    }
+  
+  }
+}
+
+
+
+
+indexedDBRead();
+
+window.onload = () => {
   let _htmltxt1 = "";
   for (var i = 0; i < charactors.length; i++) {
     _htmltxt1 += "<option value = '" + i + "'>" + charactors[i] + "</option>";
   }
   $("bookTourokuCharactorSelect").innerHTML = _htmltxt1;
-  
+
   let _htmltxt2 = "";
   for (var i = 0; i < nouhau.length; i++) {
     _htmltxt2 += "<option value = '" + i + "'>" + nouhau[i].name + "</option>";
   }
   $("bookTourokuNouhauNameSelect").innerHTML = _htmltxt2;
-  
-  mainLoop()
+
+  monitor.bookReload();
 }
