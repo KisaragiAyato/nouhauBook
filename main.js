@@ -74,7 +74,7 @@ canvas.addEventListener('mousedown', (e) => {
       touch.type = "touchstart";
 });
 
-
+/*
 function viewportSet() {
   var ww = window.innerWidth;
   var wh = window.innerHeight;
@@ -93,7 +93,7 @@ function viewportSet() {
 window.addEventListener("DOMContentLoaded", viewportSet, false);
 window.addEventListener("resize", viewportSet, false);
 window.addEventListener("orientationchange", viewportSet, false);
-
+*/
 
 
 
