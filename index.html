@@ -12,6 +12,7 @@
 
   <!-- Custom Styles -->
   <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
 </head>
 
 <body>
@@ -171,7 +172,7 @@
      
      <h3>5.その他の機能</h3>
      メニュー画面のノウハウブック表示数変更をタップすると、ノウハウブック画面の表示を3×3と4×4とで切り替えられます。 <br>
-     
+     このサイトはプログレッシブウェブアプリ（PWA）に対応しています。ブラウザからPWAをインストールすることでオフラインでも利用できます。<br>
       
       
     </div>
@@ -182,6 +183,16 @@
   <script src="data.js"></script>
   <script src="textClass.js"></script>
   <script src="main.js"></script>
+  <script>
+    // ServiceWorker登録：https://developers.google.com/web/fundamentals/primers/service-workers/?hl=ja
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service_worker.js').then(function(registration) {
+        console.log('ServiceWorker registration successful with scope: ', registration.scope);
+      }).catch(function(err) {
+        console.log('ServiceWorker registration failed: ', err);
+      });
+    }
+  </script>
   
 </body>
 </html>
