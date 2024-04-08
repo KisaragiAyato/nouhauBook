@@ -577,6 +577,7 @@ class Gamen1 extends Gamen{
     //選択状態のカードがあるなら、 そのカードのあるページに移る。 詳しくはthis.searchPageByBookNum参照
     if (isNarabikae == true ) {
       this.page = this.searchPageByBookNum(this.targetBookNum);
+      if(monitor.sortAndShiboriResult.length > 0 && this.page == 0)this.page = 1;
     }
     
     if (this.flag == 0 && user.books.length > 0) {
@@ -598,6 +599,7 @@ class Gamen1 extends Gamen{
       if(this.page > Math.ceil( monitor.sortAndShiboriResult.length / this.booksuuOnOnePage)){
         return Math.ceil( monitor.sortAndShiboriResult.length / this.booksuuOnOnePage);
       }else{
+        
         return this.page;
       }
     }
@@ -656,6 +658,7 @@ class Gamen1 extends Gamen{
       if(this.page == this.maxpage)hyoujisuu = monitor.sortAndShiboriResult.length - this.booksuuOnOnePage * (this.maxpage -1);
       let hyoujiLinesuu = 3;
       if (this.booksuuOnOnePage == 16) hyoujiLinesuu = 4;
+      console.log("hyoujisuu:" +  hyoujisuu);
       
       if(hyoujisuu >0 && this.maxpage >= 1){
         for (var i = 0; i < hyoujisuu; i++) {
@@ -670,6 +673,7 @@ class Gamen1 extends Gamen{
           //カードの中身
           //hyoujiSetteiに対応してノウハウレベルを表示
           this.sceneItems.push(new Rect(30 + (200 * _x)*3/hyoujiLinesuu, 20  +(100+ 300 * _y)*3/hyoujiLinesuu, 180*3/hyoujiLinesuu, 180*3/hyoujiLinesuu));
+          console.log("booknum:" +_thisBookNum  );
           let _thisBook = Object.assign({}, JSON.parse(JSON.stringify( user.books[_thisBookNum] )));
           let _thisHyoujiSettei = [].concat(monitor.gamen[1].hyoujiSettei);
           let _thisBookNouhausuu = _thisBook.nouhau.length  //非表示ノウハウ数の計算に使用。
@@ -717,7 +721,7 @@ class Gamen1 extends Gamen{
           let hihyoujiRect = new Rect(hihyoujiTxt.x -2,hihyoujiTxt.y -2,hihyoujiTxtW +4,hihyoujiTxtH +4,false);
           hihyoujiRect.color = "black";
           //let hihyoujiRect2 = new Rect(hihyoujiTxt.x -2,hihyoujiTxt.y -2,hihyoujiTxtW +4,hihyoujiTxtH +4);
-          //カードを先にpushするため、カードの後にpush。card.toucheventのためにhihyoujiRetの宣言が必要なためcardがここの下に来ている。
+          //カードを先にpushするため、カードの後にpush。card.toucheventのためにhihyoujiRectの宣言が必要なためcardがここの下に来ている。
           //↑toucheventで使わなくなった。
           
           //詳細ボタン。
@@ -725,7 +729,7 @@ class Gamen1 extends Gamen{
           _syousaiButton.bookNum = _thisBookNum;
           _syousaiButton.touchevent = () => {
             if (_syousaiButton.isTouched(touch)[0] == "touchstart" && _syousaiButton.isTouched(touch)[1] == true) {
-              this.syousaiBookおkNum = _syousaiButton.bookNum;
+              this.syousaiBookNum = _syousaiButton.bookNum;
               this.targetBookNum = _syousaiButton.bookNum;
               this.scene = 2;
               monitor.bookReload();
@@ -2115,8 +2119,8 @@ function bookTouroku(){
   
   user.addBook(_book);
   window.alert("登録しました");
+  console.log(user);
   monitor.bookReload(true);
-  monitor.update();
 }
 
 function bookTourokuInputResetButton(){
