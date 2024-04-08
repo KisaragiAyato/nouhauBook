@@ -3,6 +3,7 @@ body {
     background: black;
     color: white;
     padding: 20px;
+    overscroll-behavior-y: none;
 }
 
 input{
@@ -19,5 +20,5 @@ select{
 }
 
 .setumeibun{
-  font-size: 12pt;
+  font-size: 15pt;
 }
