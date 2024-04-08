@@ -762,6 +762,8 @@ class Gamen1 extends Gamen{
           if (_da == undefined || _da == null) _da = "";
           let _vi = _thisBook.vi;
           if (_vi == undefined || _vi == null) _vi = "";
+          let _me = _thisBook.me;
+          if (_me == undefined || _me == null) _me = "";
           let _voTxt =  new Text("Vo:" + _vo,30 +7+ (200*_x)*3/hyoujiLinesuu ,20 + (100 -25 + 300*_y)*3/hyoujiLinesuu ,16);
           if(hyoujiLinesuu == 4)_voTxt.text = _vo;
           this.sceneItems.push(_voTxt);
@@ -771,6 +773,9 @@ class Gamen1 extends Gamen{
           let _viTxt =  new Text("/Vi:" + _vi,30 +7+ (58*2+ 200*_x)*3/hyoujiLinesuu ,20 + (100 -25 + 300*_y)*3/hyoujiLinesuu ,16);
           if(hyoujiLinesuu == 4)_viTxt.text ="/" + _vi;
           this.sceneItems.push(_viTxt);
+          let _meTxt = new Text("Me:" + _me, 30 + 7 + (58 * 2 + 200 * _x) * 3 / hyoujiLinesuu, 20 + (100 - 50 + 300 * _y) * 3 / hyoujiLinesuu, 16);
+          if (hyoujiLinesuu == 4) _meTxt.text = "" + _me;
+          this.sceneItems.push(_meTxt);
           let _date = [].concat(_thisBook.date);
           if(_date[0] == undefined || _date[0] == null)_date[0] = "";
           if(_date[1] == undefined || _date[1] == null)_date[1] = "";
@@ -818,7 +823,7 @@ class Gamen1 extends Gamen{
       this.sceneItems.push(_charaRect);
       this.sceneItems.push(new Text(charactors[_thisBook.charactor],50 +85 + 36,30));
       this.sceneItems.push(new Text(_thisBook.date[0] + "-" + _thisBook.date[1] + "-" + _thisBook.date[2],50+85 + 120,24,16));
-      this.sceneItems.push(new Text("Vo:" +  _thisBook.vo + " /Da:" + _thisBook.da + " /Vi:" + _thisBook.vi,50 +85 + 120,28 + 20,16));
+      this.sceneItems.push(new Text("Vo:" +  _thisBook.vo + " /Da:" + _thisBook.da + " /Vi:" + _thisBook.vi + "/Me:" + _thisBook.me,50 +85 + 120,28 + 20,16));
       for (var i = 0; i < _thisBook.nouhau.length; i++) {
         
         let _moji = "○";
@@ -2071,6 +2076,7 @@ function bookTouroku(){
   _book.vo= Number($("bookTourokuVo").value);
   _book.da= Number($("bookTourokuDa").value);
   _book.vi= Number($("bookTourokuVi").value);
+  _book.me= Number($("bookTourokuMe").value);
   let x = bookTourokuJouhou.tag.length;
   for (var i = 0; i < x; i++) {
     if(bookTourokuJouhou.tag[i] != null)_book.tag.push(bookTourokuJouhou.tag[i]);
@@ -2129,6 +2135,7 @@ function bookTourokuInputReset(){
   $("bookTourokuVo").value = "";
   $("bookTourokuDa").value = "";
   $("bookTourokuVi").value = "";
+  $("bookTourokuMe").value = "";
   $("tourokuNouhauIchiranDiv").innerHTML = "";
   $("tourokuTagIchiranDiv").innerHTML = "";
   bookTourokuJouhou = new BookTourokuJouhou();
