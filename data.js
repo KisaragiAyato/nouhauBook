@@ -21,189 +21,189 @@ const nouhau = [
     name:"vocalUP(頭ノウハウ)",
     scenario:"everything",
     type:"頭ノウハウ",
-    canHikitsugi:false
+    canHikitsugi:true
   },{
     name: "vocalUP+(頭ノウハウ)",
     scenario: "everything",
     type: "頭ノウハウ",
-    canHikitsugi: false
+    canHikitsugi: true
   },
   {
     name: "vocalUP++(頭ノウハウ)",
     scenario: "everything",
     type: "頭ノウハウ",
-    canHikitsugi: false
+    canHikitsugi: true
   },
   {
     name: "vocalUP+++(頭ノウハウ)",
     scenario: "everything",
     type: "頭ノウハウ",
-    canHikitsugi: false
+    canHikitsugi: true
   },
   {
     name: "DanceUP(頭ノウハウ)",
     scenario: "everything",
     type: "頭ノウハウ",
-    canHikitsugi: false
+    canHikitsugi: true
   },
   {
     name: "DanceUP+(頭ノウハウ)",
     scenario: "everything",
     type: "頭ノウハウ",
-    canHikitsugi: false
+    canHikitsugi: true
   },
   {
     name: "DanceUP++(頭ノウハウ)",
     scenario: "everything",
     type: "頭ノウハウ",
-    canHikitsugi: false
+    canHikitsugi: true
   },
   {
     name: "DanceUP+++(頭ノウハウ)",
     scenario: "everything",
     type: "頭ノウハウ",
-    canHikitsugi: false
+    canHikitsugi: true
   },
   {
     name: "VisualUP(頭ノウハウ)",
     scenario: "everything",
     type: "頭ノウハウ",
-    canHikitsugi: false
+    canHikitsugi: true
   },
   {
     name: "VisualUP+(頭ノウハウ)",
     scenario: "everything",
     type: "頭ノウハウ",
-    canHikitsugi: false
+    canHikitsugi: true
   },
   {
     name: "VisualUP++(頭ノウハウ)",
     scenario: "everything",
     type: "頭ノウハウ",
-    canHikitsugi: false
+    canHikitsugi: true
   },
   {
     name: "VisualUP+++(頭ノウハウ)",
     scenario: "everything",
     type: "頭ノウハウ",
-    canHikitsugi: false
+    canHikitsugi: true
   },
   {
     name: "メンタルUP(頭ノウハウ)",
     scenario: "everything",
     type: "頭ノウハウ",
-    canHikitsugi: false
+    canHikitsugi: true
   },
   {
     name: "メンタルUP+(頭ノウハウ)",
     scenario: "everything",
     type: "頭ノウハウ",
-    canHikitsugi: false
+    canHikitsugi: true
   },{
     name: "メンタルUP++(頭ノウハウ)",
     scenario: "everything",
     type: "頭ノウハウ",
-    canHikitsugi: false
+    canHikitsugi: true
   },
   {
     name: "メンタルUP+++(頭ノウハウ)",
     scenario: "everything",
     type: "頭ノウハウ",
-    canHikitsugi: false
+    canHikitsugi: true
   },
   {
     name: "vocal上限UP(頭ノウハウ)",
     scenario: "everything",
     type: "頭ノウハウ",
-    canHikitsugi: false
+    canHikitsugi: true
   }, {
     name: "vocal上限UP+(頭ノウハウ)",
     scenario: "everything",
     type: "頭ノウハウ",
-    canHikitsugi: false
+    canHikitsugi: true
   },
   {
     name: "vocal上限UP++(頭ノウハウ)",
     scenario: "everything",
     type: "頭ノウハウ",
-    canHikitsugi: false
+    canHikitsugi: true
   },
   {
     name: "vocal上限UP+++(頭ノウハウ)",
     scenario: "everything",
     type: "頭ノウハウ",
-    canHikitsugi: false
+    canHikitsugi: true
   },
   {
     name: "Dance上限UP(頭ノウハウ)",
     scenario: "everything",
     type: "頭ノウハウ",
-    canHikitsugi: false
+    canHikitsugi: true
   },
   {
     name: "Dance上限UP+(頭ノウハウ)",
     scenario: "everything",
     type: "頭ノウハウ",
-    canHikitsugi: false
+    canHikitsugi: true
   },
   {
     name: "Dance上限UP++(頭ノウハウ)",
     scenario: "everything",
     type: "頭ノウハウ",
-    canHikitsugi: false
+    canHikitsugi: true
   },
   {
     name: "Dance上限UP+++(頭ノウハウ)",
     scenario: "everything",
     type: "頭ノウハウ",
-    canHikitsugi: false
+    canHikitsugi: true
   },
   {
     name: "Visual上限UP(頭ノウハウ)",
     scenario: "everything",
     type: "頭ノウハウ",
-    canHikitsugi: false
+    canHikitsugi: true
   },
   {
     name: "Visual上限UP+(頭ノウハウ)",
     scenario: "everything",
     type: "頭ノウハウ",
-    canHikitsugi: false
+    canHikitsugi: true
   },
   {
     name: "Visual上限UP++(頭ノウハウ)",
     scenario: "everything",
     type: "頭ノウハウ",
-    canHikitsugi: false
+    canHikitsugi: true
   },
   {
     name: "Visual上限UP+++(頭ノウハウ)",
     scenario: "everything",
     type: "頭ノウハウ",
-    canHikitsugi: false
+    canHikitsugi: true
   },
   {
     name: "メンタル上限UP(頭ノウハウ)",
     scenario: "everything",
     type: "頭ノウハウ",
-    canHikitsugi: false
+    canHikitsugi: true
   },
   {
     name: "メンタル上限UP+(頭ノウハウ)",
     scenario: "everything",
     type: "頭ノウハウ",
-    canHikitsugi: false
+    canHikitsugi: true
   }, {
     name: "メンタル上限UP++(頭ノウハウ)",
     scenario: "everything",
     type: "頭ノウハウ",
-    canHikitsugi: false
+    canHikitsugi: true
   },
   {
     name: "メンタル上限UP+++(頭ノウハウ)",
     scenario: "everything",
     type: "頭ノウハウ",
-    canHikitsugi: false
+    canHikitsugi: true
   },
   {
     name: "ファンの声援",
@@ -257,7 +257,7 @@ const nouhau = [
     name: "アピール値UP(トワコレ)",
     scenario: "everything",
     type: "トワコレ",
-    canHikitsugi: true
+    canHikitsugi: false
   },
   {
     name: "思い出増加量UP&アピールUP(トワコレ)",
@@ -818,7 +818,7 @@ const nouhau = [
     canHikitsugi: true
   },
   {
-    name: "Voisual適正○",
+    name: "Visual適正○",
     scenario: "G.R.A.D.",
     type: "G.R.A.D.アビリティ",
     canHikitsugi: true
@@ -1625,6 +1625,8 @@ const onlyNouhauTypes =[
   //同typeのノウハウを1つのノウハウブックに複数含むことができないtype
     "頭ノウハウ","ファンの声援","思い出(ノウハウ)","今がキラキラ!おもいッきりアイドル!","HOPPIN_JAM","エレぇベスト","踊っていいとも?増刊号","歌姫楽宴","ファン感謝祭親愛度+","G.R.A.D.(Vo)","G.R.A.D.(Da)","G.R.A.D.(Vi)","G.R.A.D.(Le)","G.R.A.D.(Ce)","LandingPoint大成功","Landing_Point(Me)","Landing_Point大成功(アビリティ)","Landing_Point(Vo)","Landing_Point(Da)","Landing_Point(Vi)","S.T.E.P.目標達成","S.T.E.P.エキシビジョンマッチ"
   ];
+  
+
   
 function nouhauSearchByName(_name){
   for (var i = 0; i < nouhau.length; i++) {
