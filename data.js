@@ -1651,6 +1651,7 @@ class Book {
     this.vo;
     this.da;
     this.vi;
+    this.me;
     this.nouhau = [];
 
     if (isSumple != 0) {
@@ -1660,9 +1661,10 @@ class Book {
       }
       this.charactor = randomNum(0, charactors.length - 1);
       this.date = [randomNum(2000, 2024), randomNum(1, 12), randomNum(1, 31)];
-      this.vo = randomNum(10, 200);
-      this.da = randomNum(10, 200);
-      this.vi = randomNum(10, 200);
+      this.vo = randomNum(10, 20) *10;
+      this.da = randomNum(10, 20) *10;
+      this.vi = randomNum(10, 20) *10;
+      this.me = randomNum(10, 20) *10;
       this.nouhau.push([randomNum(0, 31), randomNum(1, 5)]);
       for (var i = 0; i < 20; i++) {
         let _nouhauNum = randomNum(32, nouhau.length - 1);
@@ -1737,7 +1739,7 @@ let user = new User();
 let userOkiba = []; //サンプルを利用時、現在のuserobjをおいておく
 
 function sample(){
-  let _con = window.confirm("サンプルモードにしますか?サンプルモード中にここでキャンセルを押すとサンプルモードを終えます。");
+  let _con = window.confirm("サンプルモードにしますか?\nサンプルモード中にここでキャンセルを押すとサンプルモードを終えます。");
   if(_con == true){
     userOkiba.push(user);
     user = new User(16);
@@ -1771,3 +1773,10 @@ class BookTourokuJouhou{
 }
 let bookTourokuJouhou = new BookTourokuJouhou();
 
+function test(){
+  let a = [new Book(),new Book()];
+  a[0].vo = 10;
+  let b = [].concat(a);
+  b[0].vo = 100;
+  console.log(a[0].vo);  //100
+}
