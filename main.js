@@ -595,7 +595,6 @@ class Gamen1 extends Gamen{
       let _index = monitor.sortAndShiboriResult.indexOf(_targetBookNum);
       return Math.floor(_index / this.booksuuOnOnePage) +1;
     }else{
-      console.log(monitor.sortAndShiboriResult.length , this.booksuuOnOnePage);
       if(this.page > Math.ceil( monitor.sortAndShiboriResult.length / this.booksuuOnOnePage)){
         return Math.ceil( monitor.sortAndShiboriResult.length / this.booksuuOnOnePage);
       }else{
@@ -1517,7 +1516,7 @@ class Gamen2 extends Gamen{
       let _txt = new Text("ノウハウ絞りこみ設定の表示",680,60,20);
       this.sceneItems.push(_txt);
       
-      let _hyoujiTxt = new Text("表示",680,60+60,20);
+      let _hyoujiTxt = new Text("表示",680,60+30,20);
       if(monitor.gamen[2].showNouhauShiboriSettei == false)_hyoujiTxt.color = "gray";
       if(monitor.gamen[2].showNouhauShiboriSettei == true)_hyoujiTxt.color = "white";
       _hyoujiTxt.touchevent = ()=>{
@@ -1530,7 +1529,7 @@ class Gamen2 extends Gamen{
       };
       this.sceneItems.push(_hyoujiTxt);
       
-      let _hihyoujiTxt = new Text("非表示", 680 + 120, 60 + 60, 20);
+      let _hihyoujiTxt = new Text("非表示", 680 + 120, 60 + 30, 20);
       if (monitor.gamen[2].showNouhauShiboriSettei == true) _hihyoujiTxt.color = "gray";
       if (monitor.gamen[2].showNouhauShiboriSettei == false) _hihyoujiTxt.color = "white";
       _hihyoujiTxt.touchevent = () => {
@@ -1542,6 +1541,79 @@ class Gamen2 extends Gamen{
         }
       };
       this.sceneItems.push(_hihyoujiTxt);
+      
+      let _hihyoujiJogai = new Text("頭ノウハウを除く非表示中の引き継ぎノウハウをすべて除外設定にする",680,60+50*2 ,20);
+      _hihyoujiJogai.max = 17;
+      _hihyoujiJogai.touchevent = ()=>{
+        if(_hihyoujiJogai.isTouched(touch)[0] == "touchstart" && _hihyoujiJogai.isTouched(touch)[1] == true && this.wait == 0){
+          this.wait = 1;
+          setTimeout(() => { this.wait = 0 }, 100);
+          let con = window.confirm("頭ノウハウを除く表示設定されていない引き継ぎノウハウをすべて除外設定にしますか?");
+          if(con == false)return;
+          
+          for (var i = 32; i < monitor.gamen[2].nouhauShiboriSettei.length; i++) {
+            if(nouhau[i].canHikitsugi == true && this.hyoujiSettei.includes(i +1) == false){
+              monitor.gamen[2].nouhauShiboriSettei[i][2] = 1;
+            }
+          }
+          bookReload(false,true);
+        }
+      };
+      this.sceneItems.push(_hihyoujiJogai);
+      
+      let _hissuClear = new Text("必須設定をクリア",680,190+50*1,20);
+      _hissuClear.touchevent = ()=>{
+        if(_hissuClear.isTouched(touch)[0] == "touchstart" && _hissuClear.isTouched(touch)[1] == true && this.wait == 0){
+          this.wait =1;
+          setTimeout(() => { this.wait = 0 }, 100);
+          let con = window.confirm("必須設定にしたノウハウをすべて戻しますか?");
+          if (con == false) return;
+          
+          for (var i = 0; i < monitor.gamen[2].nouhauShiboriSettei.length; i++) {
+            if (monitor.gamen[2].nouhauShiboriSettei[i][0] == 1) {
+              monitor.gamen[2].nouhauShiboriSettei[i][0] = 0;
+            }
+          }
+          monitor.bookReload(false,true);
+        }
+      };
+      this.sceneItems.push(_hissuClear);
+      
+      let _kouhoClear = new Text("候補設定をクリア", 680, 190 + 50 * 2, 20);
+      _kouhoClear.touchevent = () => {
+        if (_kouhoClear.isTouched(touch)[0] == "touchstart" && _kouhoClear.isTouched(touch)[1] == true && this.wait == 0) {
+          this.wait = 1;
+          setTimeout(() => { this.wait = 0 }, 100);
+          let con = window.confirm("候補設定にしたノウハウをすべて戻しますか?");
+          if (con == false) return;
+      
+          for (var i = 0; i < monitor.gamen[2].nouhauShiboriSettei.length; i++) {
+            if (monitor.gamen[2].nouhauShiboriSettei[i][0] == 2) {
+              monitor.gamen[2].nouhauShiboriSettei[i][0] = 0;
+            }
+          }
+          monitor.bookReload(false, true);
+        }
+      };
+      this.sceneItems.push(_kouhoClear);
+      
+      let _jogaiClear = new Text("除外設定をクリア", 680, 190 + 50 * 3, 20);
+      _jogaiClear.touchevent = () => {
+        if (_jogaiClear.isTouched(touch)[0] == "touchstart" && _jogaiClear.isTouched(touch)[1] == true && this.wait == 0) {
+          this.wait = 1;
+          setTimeout(() => { this.wait = 0 }, 100);
+          let con = window.confirm("除外設定にしたノウハウをすべて戻しますか?");
+          if (con == false) return;
+      
+          for (var i = 0; i < monitor.gamen[2].nouhauShiboriSettei.length; i++) {
+            if (monitor.gamen[2].nouhauShiboriSettei[i][2] == 1) {
+              monitor.gamen[2].nouhauShiboriSettei[i][2] = 0;
+            }
+          }
+          monitor.bookReload(false, true);
+        }
+      };
+      this.sceneItems.push(_jogaiClear);
       
       let _txtB = new Text("(←戻る)", 680, 60 + 50 * 6 + 40, 22);
       _txtB.touchevent = () => {
@@ -1589,7 +1661,7 @@ class Gamen3 extends Gamen{
     
     this.nouhauShiboriSettei = [];  //nouhauの順番に[setteiNum(0:設定なし、1:必須、2:候補),lvNum(lv何以上か),setteiNum(0:設定なし、1:除外),lvNum(lv何以下か)]をいれていく。
     for (var i = 0; i < nouhau.length; i++) {
-      this.nouhauShiboriSettei.push([0,5,0,5]);
+      this.nouhauShiboriSettei.push([0,5,0,6]);
     }
     
     if (user.books.length == 0) {
@@ -1844,7 +1916,6 @@ function downloadJson() {
     for (var j = startNum ; j <= lastNum; j++) {
       _book.push(_books[j]);
     }
-    console.log(_book);
     let _userdate = [
       [].concat(_user.tags),
       [].concat(_book),
@@ -2070,20 +2141,14 @@ function bookTourokuInputReset(){
   //indexedDBに関する処理
 function indexedDBRead(){
 
-  var dbName = 'nouhauBookKanriDB';
+  var dbName = 'nouhauBookKanri_DB';
   var dbVersion = 1;
   var kerValue = 'userData';
 
   var openReq = indexedDB.open(dbName,dbVersion);
   //　DB名を指定して接続。DBがなければ新規作成される。
 
-  openReq.onupgradeneeded = function(event) {
-    //onupgradeneededは、DBのバージョン更新(DBの新規作成も含む)時のみ実行
-    console.log('db upgrade');
-    var db = event.target.result;
-    var storeName = 'nouhauBookKanriUser';
-    db.createObjectStore(storeName, { keyPath: 'id' })
-  }
+  
   openReq.onsuccess = function(event) {
    //onupgradeneededの後に実行。更新がない場合はこれだけ実行
     console.log('db open success');
@@ -2094,15 +2159,25 @@ function indexedDBRead(){
     var getReq = store.get('userData');
   
     getReq.onsuccess = function(event) {
-      var  _user = event.target.result.data; // event.resultは{id : 'userData', data : userObj}
+      let  _data = event.target.result.data; // event.resultは{id : 'userData', data : userObj}
       if(userOkiba.length > 0)userOkiba = [];
-      user = _user;
+      user = _data[0];
+      monitor.gamen[2].nouhauShiboriSettei = _data[1];
       monitor.bookReload(true);
     }
+    
+    
   
   
     // 接続を解除する
     db.close();
+  }
+  openReq.onupgradeneeded = function(event) {
+    //onupgradeneededは、DBのバージョン更新(DBの新規作成も含む)時のみ実行
+    console.log('db upgrade');
+    var db = event.target.result;
+    var storeName = 'nouhauBookKanriUser';
+    db.createObjectStore(storeName, { keyPath: 'id' })
   }
   openReq.onerror = function(event) {
     // 接続に失敗
@@ -2115,10 +2190,12 @@ function indexedDBAdd(){
   let _con = window.confirm("ブラウザのindexedDBにデータを保存しますか?");
   if(_con == false)return;
   
-  var dbName = 'nouhauBookKanriDB';
+  var dbName = 'nouhauBookKanri_DB';
   var _user = user;
   if (userOkiba.length > 0) _user = userOkiba[0];
-  var data = {id:'userData',data:_user};
+  //monitor.gamen[2].nouhauShiboriSetteiも保存する
+  let  _data = [_user,monitor.gamen[2].nouhauShiboriSettei];
+  var data = {id:'userData',data:_data};
   
   var storeName = 'nouhauBookKanriUser';
   
