@@ -531,7 +531,6 @@ class Gamen {
       this.basicItems[i].update();
     }
     for (var i = 0; i < this.sceneItems.length; i++) {
-      console.log(i);
       this.sceneItems[i].update();
     }
     for (var i = 0; i < this.timelyItems.length; i++) {
