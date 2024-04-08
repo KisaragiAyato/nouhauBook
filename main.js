@@ -575,7 +575,7 @@ class Gamen1 extends Gamen{
     this.maxpage = Math.ceil(monitor.sortAndShiboriResult.length / this.booksuuOnOnePage);
     
     //選択状態のカードがあるなら、 そのカードのあるページに移る。 詳しくはthis.searchPageByBookNum参照
-    if (isNarabikae == true && this.targetBookNum != null) {
+    if (isNarabikae == true ) {
       this.page = this.searchPageByBookNum(this.targetBookNum);
     }
     
@@ -595,8 +595,9 @@ class Gamen1 extends Gamen{
       let _index = monitor.sortAndShiboriResult.indexOf(_targetBookNum);
       return Math.floor(_index / this.booksuuOnOnePage) +1;
     }else{
-      if(this.page > Math.ceil( monitor.sortAndShiboriResult.length / this.buuksuuOnOnePage)){
-        return Math.ceil( monitor.sortAndShiboriResult.length / this.buuksuuOnOnePage);
+      console.log(monitor.sortAndShiboriResult.length , this.booksuuOnOnePage);
+      if(this.page > Math.ceil( monitor.sortAndShiboriResult.length / this.booksuuOnOnePage)){
+        return Math.ceil( monitor.sortAndShiboriResult.length / this.booksuuOnOnePage);
       }else{
         return this.page;
       }
