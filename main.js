@@ -531,6 +531,7 @@ class Gamen {
       this.basicItems[i].update();
     }
     for (var i = 0; i < this.sceneItems.length; i++) {
+      console.log(i);
       this.sceneItems[i].update();
     }
     for (var i = 0; i < this.timelyItems.length; i++) {
@@ -658,7 +659,7 @@ class Gamen1 extends Gamen{
       if(this.page == this.maxpage)hyoujisuu = monitor.sortAndShiboriResult.length - this.booksuuOnOnePage * (this.maxpage -1);
       let hyoujiLinesuu = 3;
       if (this.booksuuOnOnePage == 16) hyoujiLinesuu = 4;
-      console.log("hyoujisuu:" +  hyoujisuu);
+      
       
       if(hyoujisuu >0 && this.maxpage >= 1){
         for (var i = 0; i < hyoujisuu; i++) {
@@ -671,15 +672,34 @@ class Gamen1 extends Gamen{
 
             
           //カードの中身
+          //表示設定分割線の描画
+          let _tate = [].concat(monitor.gamen[1].nouhauHyoujiSetteiBunkatsuSetteiTate);
+          let _yoko = [].concat(monitor.gamen[1].nouhauHyoujiSetteiBunkatsuSetteiYoko);
+          for (var t = 0; t < _tate.length; t++) {
+            if(_tate[t] == 0)continue;
+            let tx = t % 4;
+            let ty = Math.floor(t/4);
+            this.sceneItems.push(new Line(33 +(18+ 200*_x  + 33*tx +18)*3/hyoujiLinesuu,24 +(100+ 13+300*_y  + 33*ty-11)*3/hyoujiLinesuu,33 +(18+ 200*_x  + 33*tx +18)*3/hyoujiLinesuu,24 +(100+ 13+300*_y  + 33*ty +22)*3/hyoujiLinesuu));
+          }
+          
+          for (var t = 0; t < _yoko.length; t++) {
+            if (_yoko[t] == 0) continue;
+            //if(_tate[t] == 0)continue;
+            let tx = t % 5;
+            let ty = Math.floor(t / 5);
+            this.sceneItems.push(new Line(33 + (18 + 200 * _x + 33 * tx -15) * 3 / hyoujiLinesuu, 28 + (100 + 13 + 300 * _y + 33 * ty +18) * 3 / hyoujiLinesuu, 33 + (18 + 200 * _x + 33 * tx + 18) * 3 / hyoujiLinesuu, 28 + (100 + 13 + 300 * _y + 33 * ty + 18) * 3 / hyoujiLinesuu));
+          }
+          
+          
           //hyoujiSetteiに対応してノウハウレベルを表示
           this.sceneItems.push(new Rect(30 + (200 * _x)*3/hyoujiLinesuu, 20  +(100+ 300 * _y)*3/hyoujiLinesuu, 180*3/hyoujiLinesuu, 180*3/hyoujiLinesuu));
-          console.log("booknum:" +_thisBookNum  );
+          
           let _thisBook = Object.assign({}, JSON.parse(JSON.stringify( user.books[_thisBookNum] )));
           let _thisHyoujiSettei = [].concat(monitor.gamen[1].hyoujiSettei);
           let _thisBookNouhausuu = _thisBook.nouhau.length  //非表示ノウハウ数の計算に使用。
           let _thisBookNouhausuuWhichCanHikitsugi = 0;  //非表示ノウハウ数の計算に使用
           for (var _nouhaux = 0; _nouhaux < _thisBook.nouhau.length; _nouhaux++) {
-            if(nouhau[ _thisBook.nouhau[_nouhaux][0]].canHikitsugi == true)_thisBookNouhausuuWhichCanHikitsugi++;
+            if(nouhau[ _thisBook.nouhau[_nouhaux][0]].canHikitsugi == true && nouhau[_thisBook.nouhau[_nouhaux][0]].type != "S.T.E.P.目標達成" && nouhau[_thisBook.nouhau[_nouhaux][0]].type != "S.T.E.P.エキシビジョンマッチ" && nouhau[_thisBook.nouhau[_nouhaux][0]].type != "頭ノウハウ")_thisBookNouhausuuWhichCanHikitsugi++;
           }
           let _thisHyoujiNouhausuu = 0; //非表示ノウハウ数の計算に使用。for文の中で加算していく。
           let _thisHyoujiNouhausuuWhichCanHikitsugi = 0; //非表示ノウハウ数の計算に使用。for文の中で加算していく
@@ -704,10 +724,12 @@ class Gamen1 extends Gamen{
           
             if(_thisNouhauLv != 0){
               _thisHyoujiNouhausuu++;
-              if(nouhau[_thisNouhau -1].canHikitsugi == true)_thisHyoujiNouhausuuWhichCanHikitsugi++;
+              if(nouhau[_thisNouhau -1].canHikitsugi == true && nouhau[_thisNouhau -1].type != "S.T.E.P.目標達成" && nouhau[_thisNouhau -1].type != "S.T.E.P.エキシビジョンマッチ" && nouhau[_thisNouhau -1].type != "頭ノウハウ")_thisHyoujiNouhausuuWhichCanHikitsugi++;
             }
           
           }
+          
+          
           //非表示ノウハウ数を記載
           let _thisHihyoujiNouhausuu = _thisBookNouhausuu - _thisHyoujiNouhausuu;
           let _thisHihyoujiNouhausuuWichCanHikitsugi = _thisBookNouhausuuWhichCanHikitsugi - _thisHyoujiNouhausuuWhichCanHikitsugi;
@@ -994,7 +1016,8 @@ class Gamen2 extends Gamen{
           "メニュー画面",
           "ソート画面",
           "タグ絞りこみ画面",
-          "ノウハウ絞りこみ画面"
+          "ノウハウ絞りこみ画面",
+          "ノウハウ表示設定分割線設定"
         ];
     
     this.flag = 0;
@@ -1009,6 +1032,18 @@ class Gamen2 extends Gamen{
     this.tagMaxPage = Math.ceil (user.tags.length / this.tagsuuOnOnePage);
     this.tagShiboriSettei = []; //tagSetteiNumを入れる。0:指定なし、2:必須、3:除外、4:候補。この配列の中身はthis.tagHanei()で、user.tags.lengthがthis tagShiboriSettei.lengthより多い場合に、その差の数だけ0をpushして増やす。
     this.tagShiboriSetteiTagNashi = 0; //タグなしに対する設定
+    
+    this.nouhauHyoujiSetteiBunkatsuSetteiTate = [
+      0,0,0,0,
+      0,0,0,0,
+      0,0,0,0,
+      0,0,0,0,
+      0,0,0,0];
+    this.nouhauHyoujiSetteiBunkatsuSetteiYoko = [
+          0, 0, 0, 0,0,
+          0, 0, 0, 0,0,
+          0, 0, 0, 0,0,
+          0, 0, 0, 0,0];
     
     this.hyoujiSettei = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
     this.hyoujiNum = 1; //user.hyoujisに対応.1~10まで
@@ -1242,6 +1277,17 @@ class Gamen2 extends Gamen{
         }
       };
       this.sceneItems.push(bookHyoujisuuTxt);
+      
+      let nouhauHyoujiSetteiBunkatsuTxt = new Text("ノウハウ表示設定分割線設定", 680, 60 + 50 * 4);
+      nouhauHyoujiSetteiBunkatsuTxt.touchevent = () => {
+        if (nouhauHyoujiSetteiBunkatsuTxt.isTouched(touch)[0] == "touchstart" && nouhauHyoujiSetteiBunkatsuTxt.isTouched(touch)[1] == true && this.wait == 0) {
+          this.wait = 1;
+          setTimeout(() => { this.wait = 0; }, 100);
+          this.setScene(5);
+          monitor.update();
+        }
+      };
+      this.sceneItems.push(nouhauHyoujiSetteiBunkatsuTxt);
       
       
     }else if(_sceneNum == 2){
@@ -1551,8 +1597,8 @@ class Gamen2 extends Gamen{
       };
       this.sceneItems.push(_hihyoujiTxt);
       
-      let _hihyoujiJogai = new Text("頭ノウハウを除く非表示中の引き継ぎノウハウをすべて除外設定にする",680,60+50*2 ,20);
-      _hihyoujiJogai.max = 17;
+      let _hihyoujiJogai = new Text("非表示中の引き継ぎノウハウをすべて除外設定にする(頭、目標達成、エキシビ以外",680,60+50*2 ,20);
+      _hihyoujiJogai.max = 19;
       _hihyoujiJogai.touchevent = ()=>{
         if(_hihyoujiJogai.isTouched(touch)[0] == "touchstart" && _hihyoujiJogai.isTouched(touch)[1] == true && this.wait == 0){
           this.wait = 1;
@@ -1561,7 +1607,7 @@ class Gamen2 extends Gamen{
           if(con == false)return;
           
           for (var i = 32; i < monitor.gamen[2].nouhauShiboriSettei.length; i++) {
-            if(nouhau[i].canHikitsugi == true && this.hyoujiSettei.includes(i +1) == false){
+            if(nouhau[i].canHikitsugi == true && this.hyoujiSettei.includes(i +1) == false && nouhau[i].type != "S.T.E.P.目標達成" &&nouhau[i].type != "S.T.E.P.エキシビジョンマッチ"){
               monitor.gamen[2].nouhauShiboriSettei[i][2] = 1;
             }
           }
@@ -1634,6 +1680,63 @@ class Gamen2 extends Gamen{
         }
       };
       this.sceneItems.push(_txtB);
+      
+    }else if(_sceneNum == 5){
+      this.sceneItems = [];
+      
+      let _txtB = new Text("(←戻る)", 680, 60 + 50 * 6 + 40, 22);
+      _txtB.touchevent = () => {
+        if (_txtB.isTouched(touch)[0] == "touchstart" && _txtB.isTouched(touch)[1] == true && this.wait == 0) {
+          this.wait = 1;
+          setTimeout(() => { this.wait = 0; }, 100);
+          this.setScene(1);
+          monitor.update();
+        }
+      };
+      this.sceneItems.push(_txtB);
+      
+      this.sceneItems.push(new Rect(680,60,300,300));
+      this.sceneItems.push(new Rect(680,60,300/5,300));
+      this.sceneItems.push(new Rect(680,60,300*2/5,300));
+      this.sceneItems.push(new Rect(680,60,300*3/5,300));
+      this.sceneItems.push(new Rect(680,60,300*4/5,300));
+      this.sceneItems.push(new Rect(680,60,300,300/5));
+      this.sceneItems.push(new Rect(680,60,300,300*2/5));
+      this.sceneItems.push(new Rect(680,60,300,300*3/5));
+      this.sceneItems.push(new Rect(680,60,300,300*4/5));
+      for (var i = 0; i < this.nouhauHyoujiSetteiBunkatsuSetteiTate.length; i++) {
+        let _x = i % 4;
+        let _y = Math.floor(i/ 4);
+        let _button = new Rect(680+ 50 + 60*_x ,60 + 20 + 60*_y,20,20,false);
+        if(this.nouhauHyoujiSetteiBunkatsuSetteiTate[i] == 0)_button.color = "gray";
+        _button.num = i;
+        _button.touchevent = ()=>{
+          if(_button.isTouched(touch)[0] = "touchstart" && _button.isTouched(touch)[1] == true && this.wait == 0){
+            this.wait = 1;
+            setTimeout(()=>{this.wait = 0},100);
+            this.nouhauHyoujiSetteiBunkatsuSetteiTate[_button.num] = 1- this.nouhauHyoujiSetteiBunkatsuSetteiTate[_button.num];
+            monitor.bookReload();
+          }
+        };
+        this.sceneItems.push(_button);
+      }
+      
+      for (var i = 0; i < this.nouhauHyoujiSetteiBunkatsuSetteiYoko.length; i++) {
+        let _x = i % 5;
+        let _y = Math.floor(i / 5);
+        let _button = new Rect(680 + 20 + 60 * _x, 60 + 50 + 60 * _y, 20, 20,false);
+        if (this.nouhauHyoujiSetteiBunkatsuSetteiYoko[i] == 0) _button.color = "gray";
+        _button.num = i;
+        _button.touchevent = () => {
+          if (_button.isTouched(touch)[0] = "touchstart" && _button.isTouched(touch)[1] == true && this.wait == 0) {
+            this.wait = 1;
+            setTimeout(() => { this.wait = 0 }, 100);
+            this.nouhauHyoujiSetteiBunkatsuSetteiYoko[_button.num] = 1 - this.nouhauHyoujiSetteiBunkatsuSetteiYoko[_button.num];
+            monitor.bookReload();
+          }
+        };
+        this.sceneItems.push(_button);
+      }
       
     }
   }
@@ -2119,7 +2222,6 @@ function bookTouroku(){
   
   user.addBook(_book);
   window.alert("登録しました");
-  console.log(user);
   monitor.bookReload(true);
 }
 
@@ -2170,8 +2272,15 @@ function indexedDBRead(){
     var getReq = store.get('userData');
   
     getReq.onsuccess = function(event) {
-      let  _data = event.target.result.data; // event.resultは{id : 'userData', data : userObj}
+      let  _data = event.target.result.data; // event.resultは{id : 'userData', data : [userObj,nouhauShiboriSettei]}
       if(userOkiba.length > 0)userOkiba = [];
+      //_data[0].booksの中身から、削除されたbookを取り除く。nullになっている。
+      let _cleanedBooks = [];
+      for (var k = 0; k < _data[0].books.length; k++) {
+        if(_data[0].books[k] != null)_cleanedBooks.push(_data[0].books[k]);
+      }
+      _data[0].books = _cleanedBooks;
+      
       user =  Object.assign(new User(), _data[0]);
       monitor.gamen[2].nouhauShiboriSettei = _data[1];
       monitor.bookReload(true);
