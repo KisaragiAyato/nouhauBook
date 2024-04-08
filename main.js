@@ -717,7 +717,7 @@ class Gamen1 extends Gamen{
           let hihyoujiRect = new Rect(hihyoujiTxt.x -2,hihyoujiTxt.y -2,hihyoujiTxtW +4,hihyoujiTxtH +4,false);
           hihyoujiRect.color = "black";
           //let hihyoujiRect2 = new Rect(hihyoujiTxt.x -2,hihyoujiTxt.y -2,hihyoujiTxtW +4,hihyoujiTxtH +4);
-          //カードを先にpushするため、カードの後にpush。card.toucheventのためにhihyoujiRectの宣言が必要なためcardがここの下に来ている。
+          //カードを先にpushするため、カードの後にpush。card.toucheventのためにhihyoujiRetの宣言が必要なためcardがここの下に来ている。
           //↑toucheventで使わなくなった。
           
           //詳細ボタン。
@@ -725,7 +725,7 @@ class Gamen1 extends Gamen{
           _syousaiButton.bookNum = _thisBookNum;
           _syousaiButton.touchevent = () => {
             if (_syousaiButton.isTouched(touch)[0] == "touchstart" && _syousaiButton.isTouched(touch)[1] == true) {
-              this.syousaiBookNum = _syousaiButton.bookNum;
+              this.syousaiBookおkNum = _syousaiButton.bookNum;
               this.targetBookNum = _syousaiButton.bookNum;
               this.scene = 2;
               monitor.bookReload();
@@ -2168,7 +2168,7 @@ function indexedDBRead(){
     getReq.onsuccess = function(event) {
       let  _data = event.target.result.data; // event.resultは{id : 'userData', data : userObj}
       if(userOkiba.length > 0)userOkiba = [];
-      user = _data[0];
+      user =  Object.assign(new User(), _data[0]);
       monitor.gamen[2].nouhauShiboriSettei = _data[1];
       monitor.bookReload(true);
     }
