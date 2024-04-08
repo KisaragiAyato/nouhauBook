@@ -1,4 +1,6 @@
 某アイドルをプロデュースするゲームのノウハウブックを管理するためのツールです
 
 html,css javascript使用。
-indexedDB使用。dbNAME:"nouhauBookKanri_DB"
+PWA対応。
+indexedDB対応。dbNAME:"nouhauBookKanri_DB"
+
