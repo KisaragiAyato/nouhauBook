@@ -256,3 +256,37 @@ class Rect{
   onenterframe() {}
   
 }
+
+class Line {
+  constructor(startx, starty, endx, endy, color = "white", width = 2) {
+    this.startx = startx;
+    this.starty = starty;
+    this.endx = endx;
+    this.endy = endy;
+    this.color = color;
+    this.width = width;
+    this.hidden = false;
+    this.globalAlpha = 1;
+  }
+
+  update() {
+    if (this.hidden == true) return;
+    this.render();
+    this.onenterframe();
+
+  }
+
+  render() {
+    var context = canvas.getContext("2d");
+    context.beginPath();
+    context.moveTo(this.startx, this.starty);
+    context.lineTo(this.endx , this.endy);
+    context.strokeStyle = this.color;
+    context.lineWidth = this.width;
+    if (this.globalAlpha != 1) context.globalAlpha = this.globalAlpha;
+    context.stroke();
+  }
+
+  onenterframe() {}
+  touchevent(){}
+}
