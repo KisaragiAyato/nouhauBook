@@ -1607,6 +1607,12 @@ const nouhau = [
     scenario: "Landing_Point",
     type: "Fes_Tours専用",
     canHikitsugi: true
+  },
+  {
+    name: "ロマンチスト",
+    scenario: "G.R.A.D.",
+    type: "G.R.A.D.アビリティ",
+    canHikitsugi: true
   }
   
 ];
