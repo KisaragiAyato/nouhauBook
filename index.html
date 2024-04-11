@@ -220,6 +220,15 @@
   </details>
   
   <hr>
+  
+  <div>
+    バージョン: <span id="jsVerSpan">1.0</span> <br>
+    <!--
+    (PWAでバージョンを更新するには、serviceWorkerを解除→これを終了→オンライン状態で再起動) <br>
+    <button  onclick="swKaijo()">serviceWorkerを解除</button>
+    -->
+
+  </div>
   <!-- Project -->
   <script src="data.js"></script>
   <script src="textClass.js"></script>
@@ -228,18 +237,37 @@
     // ServiceWorker登録：https://developers.google.com/web/fundamentals/primers/service-workers/?hl=ja
     if ('serviceWorker' in navigator) {
   navigator.serviceWorker
-    .register('/service_worker.js')
+    .register('./service_worker.js',{updateViaCache:'none'})
     .then(registration => {
       // 登録成功
+      console.log("service worker could register");
+      
       registration.onupdatefound = function() {
-        console.log('アップデートがあります！');
+        console.log('service worker update');
         registration.update();
+        
+        
       }
     })
     .catch(err => {
       // 登録失敗
+      console.log("service worker couldn't register");
   });
 }
+
+function swKaijo(){
+  let co = window.confirm("service workerを解除しますか?");
+  if(co == false)return;
+  navigator.serviceWorker.getRegistration()
+    .then(registration => {
+      registration.unregister();
+      console.log("service worker could unregister");
+      window.alert("解除しました");
+    })
+}
+
+  
+  
   </script>
   
 </body>
