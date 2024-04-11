@@ -2,7 +2,7 @@
 
 // キャッシュ名とキャッシュファイルの指定
 var CACHE_VERSION = 'pwa-nouhauBookKanri-caches';
-var DISP_VERSION = 'ca-d-v1';
+var DISP_VERSION = '1.1';
 var urlsToCache = [
     './index.html',
     './style.css',
@@ -30,6 +30,7 @@ self.addEventListener('install', function (event) {
         cache.addAll(resources);
       })
   );
+  event.waitUntil(self.skipWaiting());
 });
 // キャッシュ表示
 self.addEventListener('fetch', function (event) {
