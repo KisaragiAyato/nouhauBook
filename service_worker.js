@@ -4,7 +4,7 @@
 var CACHE_VERSION = 'pwa-nouhauBookKanri-caches';
 var DISP_VERSION = 'ca-d-v1';
 var urlsToCache = [
-    './',
+    './index.html',
     './style.css',
     './main.js',
     './data.js',
