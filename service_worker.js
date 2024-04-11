@@ -18,7 +18,7 @@ for (var i = 0; i < nouhau.length; i++) {
   
   urlsToCache.push('./image/nouhau' + moji + '.png');
 }
-var resources = appShellFiles.concat(urlsToCache);
+
 
 //https://qiita.com/ichii731/items/0fb38333e8a0f00eb9ff より
 // キャッシュ追加
@@ -28,7 +28,7 @@ self.addEventListener('install', function (event) {
     caches.open(CACHE_VERSION)
       .then(function (cache) {
         console.log('cache.addAll');
-        cache.addAll(resources);
+        cache.addAll(urlsToCache);
       })
   );
   event.waitUntil(self.skipWaiting());
