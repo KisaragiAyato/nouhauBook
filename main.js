@@ -2,6 +2,12 @@ function $(id){
   return document.getElementById(id);
 }
 
+const jsVersion = "1.1";
+function verHyouki(){
+  $("jsVerSpan").innerText = jsVersion;
+}
+verHyouki();
+
 const wakusenWidth = 1;
 
 const canvas = $("canvas");
