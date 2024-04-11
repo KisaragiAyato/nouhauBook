@@ -8,6 +8,7 @@ function verHyouki(){
 }
 verHyouki();
 
+
 const wakusenWidth = 1;
 
 const canvas = $("canvas");
@@ -2287,7 +2288,11 @@ function indexedDBRead(){
       _data[0].books = _cleanedBooks;
       
       user =  Object.assign(new User(), _data[0]);
-      monitor.gamen[2].nouhauShiboriSettei = _data[1];
+      if(_data.length >= 2)monitor.gamen[2].nouhauShiboriSettei = _data[1];
+      if(_data.length >= 4){
+        monitor.gamen[1].nouhauHyoujiSetteiBunkatsuSetteiTate = [].concat(_data[2]);
+        monitor.gamen[1].nouhauHyoujiSetteiBunkatsuSetteiYoko = [].concat(_data[3]);
+      }
       monitor.bookReload(true);
     }
     
@@ -2319,7 +2324,7 @@ function indexedDBAdd(){
   var _user = user;
   if (userOkiba.length > 0) _user = userOkiba[0];
   //monitor.gamen[2].nouhauShiboriSetteiも保存する
-  let  _data = [_user,monitor.gamen[2].nouhauShiboriSettei];
+  let  _data = [_user,monitor.gamen[2].nouhauShiboriSettei,monitor.gamen[1].nouhauHyoujiSetteiBunkatsuSetteiTate,monitor.gamen[1].nouhauHyoujiSetteiBunkatsuSetteiYoko];
   var data = {id:'userData',data:_data};
   
   var storeName = 'nouhauBookKanriUser';
