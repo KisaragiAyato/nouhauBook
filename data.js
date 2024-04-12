@@ -1745,11 +1745,15 @@ class User{
 
 let user = new User();
 let userOkiba = []; //サンプルを利用時、現在のuserobjをおいておく
+let monitorOkiba = [];
 
 function sample(){
   let _con = window.confirm("サンプルモードにしますか?\nサンプルモード中にここでキャンセルを押すとサンプルモードを終えます。");
   if(_con == true){
-    userOkiba.push(user);
+    if(userOkiba.length == 0){
+      userOkiba.push(user);
+      monitorOkiba.push(monitor);
+    }
     user = new User(16);
     monitor = new Monitor();
     monitor.gamen = [0, new Gamen2(), new Gamen3()];
@@ -1761,9 +1765,8 @@ function sample(){
     if(userOkiba.length == 0)return;
     user = userOkiba[0];
     userOkiba = [];
-    monitor = new Monitor();
-    monitor.gamen = [0,new Gamen2(),new Gamen3()];
-    monitor.gamen[0] = new Gamen1();
+    monitor = monitorOkiba[0];
+    monitorOkiba = [];
     bookTourokuInputReset();
     tagHanei();
     monitor.bookReload(true);
