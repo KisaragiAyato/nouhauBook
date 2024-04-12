@@ -2,7 +2,7 @@ function $(id){
   return document.getElementById(id);
 }
 
-const jsVersion = "1.1";
+const jsVersion = "1.2";
 function verHyouki(){
   $("jsVerSpan").innerText = jsVersion;
 }
@@ -143,6 +143,7 @@ class Monitor{
     this.shiborikomu();
     
     
+    this.gamen[1].hyoujiSettei = [].concat(user.hyoujis[this.gamen[1].hyoujiNum -1]);
     
     for (var i = 0; i < this.gamen.length; i++) {
       this.gamen[i].bookReload(isUserBookChange || isNarabikae);
@@ -1061,7 +1062,8 @@ class Gamen2 extends Gamen{
   }
   
   bookReload(){
-    this.hyoujiSettei = [].concat(user.hyoujis[this.hyoujiNum -1]);
+    //this.hyoujiSettei = [].concat(user.hyoujis[this.hyoujiNum -1]);
+    //上記はmonitor.gamen[0].bookReloadより前に行いたいのでmonitor.bookReloadで行うこととする
     if(this.flag == 0 && user.books.length > 0){
       
       this.flag = 1;
@@ -1366,8 +1368,8 @@ class Gamen2 extends Gamen{
       };
       this.sceneItems.push(_txt3);
       
-      let _txt4 = new Text("非表示中の引き継ぎノウハウが少ない順", 680, 60 + 50 * 3, 22);
-      _txt4.max = 17;
+      let _txt4 = new Text("非表示中の引き継ぎノウハウが少ない順(頭、目標達成、エキシビジョンを除く", 680, 60 + 50 * 3, 22);
+      _txt4.max = 18;
       if (monitor.sortNum != 4) _txt4.color = "gray";
       if(monitor.sortNum == 4)_txt4.color = "white";
       _txt4.touchevent = ()=>{
@@ -1609,7 +1611,7 @@ class Gamen2 extends Gamen{
         if(_hihyoujiJogai.isTouched(touch)[0] == "touchstart" && _hihyoujiJogai.isTouched(touch)[1] == true && this.wait == 0){
           this.wait = 1;
           setTimeout(() => { this.wait = 0 }, 100);
-          let con = window.confirm("頭ノウハウを除く表示設定されていない引き継ぎノウハウをすべて除外設定にしますか?");
+          let con = window.confirm("表示設定されていない引き継ぎノウハウ(頭、目標達成、エキシビジョンを除く)をすべて除外設定にしますか?");
           if(con == false)return;
           
           for (var i = 32; i < monitor.gamen[2].nouhauShiboriSettei.length; i++) {
@@ -1952,6 +1954,7 @@ function readjson1() {
     user.books = res[1];
     user.hyoujis = res[2];
     userOkiba = [];
+    monitorOkiba = [];
     monitor.gamen[1].tagShiboriSettei = [];
     monitor.bookReload(true);
     tagHanei();
@@ -1982,6 +1985,8 @@ function readjson2(){
       //サンプルモードを終える
       user = userOkiba[0];
       userOkiba = [];
+      monitor = monitorOkiba[0];
+      monitorOkiba = [];
       tagHanei();
       bookTourokuInputReset();
       window.alert("サンプルモードを終了しました")
@@ -2006,11 +2011,20 @@ function downloadJson() {
   //ファイル名に使用するため日時の文字列を取得
   let dateTxt = "";
   let date = new Date(); 
-  dateTxt += "" + date.getFullYear() + "_"; 
-  dateTxt += "" + (date.getMonth() +1) + "_"; 
-  dateTxt += "" + date.getDate() + "_"; 
-  dateTxt += "" + date.getHours() + "_"; 
-  dateTxt += "" + date.getMinutes(); 
+  let theYear = date.getFullYear() ;
+  let theMonth = date.getMonth() +1;
+  if(theMonth < 10)theMonth = "0" + theMonth;
+  let theDate = date.getDate() ;
+  if(theDate < 10)theDate = "0" + theDate;
+  let theHours = date.getHours();
+  if(theHours < 10)theHours = "0" + theHours;
+  let theMinutes = date.getMinutes(); 
+  if(theMinutes < 10)theMinutes = "0" + theMinutes;
+  dateTxt += "" + theYear; 
+  dateTxt += "" + theMonth; 
+  dateTxt += "" + theDate; 
+  dateTxt += "" + theHours; 
+  dateTxt += "" + theMinutes; 
   
   let _user = user;
   if(userOkiba.length > 0){
@@ -2322,9 +2336,10 @@ function indexedDBAdd(){
   
   var dbName = 'nouhauBookKanri_DB';
   var _user = user;
-  if (userOkiba.length > 0) _user = userOkiba[0];
+  var _monitor = monitor;
+  if (userOkiba.length > 0) {_user = userOkiba[0];_monitor = monitorOkiba[0]};
   //monitor.gamen[2].nouhauShiboriSetteiも保存する
-  let  _data = [_user,monitor.gamen[2].nouhauShiboriSettei,monitor.gamen[1].nouhauHyoujiSetteiBunkatsuSetteiTate,monitor.gamen[1].nouhauHyoujiSetteiBunkatsuSetteiYoko];
+  let  _data = [_user,_monitor.gamen[2].nouhauShiboriSettei,_monitor.gamen[1].nouhauHyoujiSetteiBunkatsuSetteiTate,_monitor.gamen[1].nouhauHyoujiSetteiBunkatsuSetteiYoko];
   var data = {id:'userData',data:_data};
   
   var storeName = 'nouhauBookKanriUser';
@@ -2348,6 +2363,12 @@ function indexedDBAdd(){
     }
   
   }
+  openReq.onerror = function() {
+    // 接続に失敗
+    console.log('db open error');
+    window.alert("indexedDBを開けませんでした");
+  }
+
 }
 
 
