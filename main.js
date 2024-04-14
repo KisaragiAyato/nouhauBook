@@ -2,7 +2,7 @@ function $(id){
   return document.getElementById(id);
 }
 
-const jsVersion = "1.2";
+const jsVersion = "1.3";
 function verHyouki(){
   $("jsVerSpan").innerText = jsVersion;
 }
@@ -2307,6 +2307,7 @@ function indexedDBRead(){
         monitor.gamen[1].nouhauHyoujiSetteiBunkatsuSetteiTate = [].concat(_data[2]);
         monitor.gamen[1].nouhauHyoujiSetteiBunkatsuSetteiYoko = [].concat(_data[3]);
       }
+      tagHanei();
       monitor.bookReload(true);
     }
     
