@@ -417,12 +417,14 @@ class Monitor{
         if(nouhauShiboriSettei[n][2] == 1) jogaiNouhaus.push([n,nouhauShiboriSettei[n][3]]);
       }
       
+      
       for (var i = 0; i < result1.length; i++) {
         let _canThisBook = true;
         let _thisBookNouhau = user.books[result1[i]].nouhau;
         if(_thisBookNouhau.length == 0){
           //ノウハウが設定されていないbookの場合
           if(needNouhaus.length > 0)_canThisBook = false;
+          if(kouhoNouhaus.length > 0)_canThisBook = false;
         }else{
           if(needNouhaus.length > 0){
             //needNouhauがすべて入ってないなら該当しない
@@ -2040,6 +2042,9 @@ function downloadJson() {
   let booklength = _books.length;
   const booksuuAtOneJsonFile = 50;
   let num = Math.ceil(booklength / booksuuAtOneJsonFile);
+  
+  let downLoadLink = document.createElement("a");
+  
   for(var i=0;i<num;i++){
     let startNum = booksuuAtOneJsonFile * i ;
     let lastNum = booksuuAtOneJsonFile * (i +1) -1;
@@ -2054,13 +2059,13 @@ function downloadJson() {
       [].concat(_user.hyoujis)
     ];
     const resultJson = JSON.stringify(_userdate);
-    let downLoadLink = document.createElement("a");
+    
     downLoadLink.download = "nouhauKanriData" + dateTxt + "(" + (i +1) + ").json";
     downLoadLink.href = URL.createObjectURL(new Blob([resultJson], { type: "application/json" }));
     downLoadLink.dataset.downloadurl = ["text/plain", downLoadLink.download, downLoadLink.href].join(":");
     downLoadLink.click();
-    document.body.removeChild(downLoadLink);
   }
+  document.body.removeChild(downLoadLink);
   return;
   
   
