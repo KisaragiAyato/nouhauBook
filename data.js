@@ -1728,6 +1728,8 @@ class User{
       
     ];
     
+    this.kyoyouNouhauSettei = [1,1,1,1];//頭、ファンの声援、S.T.E.P.目標達成,S.T.E.P.エキシビジョンマッチ
+    
     let _sampleBookSuu = sampleBooksuu;
     for (var i = 0; i < _sampleBookSuu; i++) {
       this.addBook(new Book(1));
@@ -1784,10 +1786,3 @@ class BookTourokuJouhou{
 }
 let bookTourokuJouhou = new BookTourokuJouhou();
 
-function test(){
-  let a = [new Book(),new Book()];
-  a[0].vo = 10;
-  let b = [].concat(a);
-  b[0].vo = 100;
-  console.log(a[0].vo);  //100
-}
