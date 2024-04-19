@@ -2,7 +2,7 @@ function $(id){
   return document.getElementById(id);
 }
 
-const jsVersion = "1.4";
+const jsVersion = "1.5";
 function verHyouki(){
   $("jsVerSpan").innerText = jsVersion;
 }
@@ -246,6 +246,12 @@ class Monitor{
     }else if(_sortNum == 3){
       let _hyouji = [].concat(this.gamen[1].hyoujiSettei);
       let _n = sort1.length - 1;
+      let _kyoyouNouhaus = [];
+      if (user.kyoyouNouhauSettei[0] == 1) _kyoyouNouhaus.push("頭ノウハウ");
+      if (user.kyoyouNouhauSettei[1] == 1) _kyoyouNouhaus.push("ファンの声援");
+      if (user.kyoyouNouhauSettei[2] == 1) _kyoyouNouhaus.push("S.T.E.P.目標達成");
+      if (user.kyoyouNouhauSettei[3] == 1) _kyoyouNouhaus.push("S.T.E.P.エキシビジョンマッチ");
+      
       while (_n >= 1) {
         for (var i = 0; i < _n; i++) {
           let _irekae = false;
@@ -258,11 +264,11 @@ class Monitor{
           let rightHihyoujisuuWhichCanHikitsugi = 0;
           for (var l = 0; l < leftBook.nouhau.length; l++) {
             if(_hyouji.includes(leftBook.nouhau[l][0] +1))leftHyoujisuu++;
-            if(_hyouji.includes(leftBook.nouhau[l][0] +1) == false && nouhau[leftBook.nouhau[l][0]].canHikitsugi == true)leftHihyoujisuuWhichCanHikitsugi++;
+            if(_hyouji.includes(leftBook.nouhau[l][0] +1) == false && nouhau[leftBook.nouhau[l][0]].canHikitsugi == true && _kyoyouNouhaus.includes(nouhau[leftBook.nouhau[l][0]].type) == false)leftHihyoujisuuWhichCanHikitsugi++;
           }
           for (var r = 0; r < rightBook.nouhau.length; r++) {
             if (_hyouji.includes(rightBook.nouhau[r][0] + 1)) rightHyoujisuu++;
-            if(_hyouji.includes(rightBook.nouhau[r][0] +1) == false && nouhau[rightBook.nouhau[r][0]].canHikitsugi == true)rightHihyoujisuuWhichCanHikitsugi++;
+            if(_hyouji.includes(rightBook.nouhau[r][0] +1) == false && nouhau[rightBook.nouhau[r][0]].canHikitsugi == true && _kyoyouNouhaus.includes(nouhau[rightBook.nouhau[r][0]].type) == false)rightHihyoujisuuWhichCanHikitsugi++;
           }
           if(rightHyoujisuu > leftHyoujisuu)_irekae = true;
           if(rightHyoujisuu == leftHyoujisuu){
@@ -288,6 +294,12 @@ class Monitor{
     }else if(_sortNum == 4){
       let _hyouji = [].concat(this.gamen[1].hyoujuSettei);
       let _n = sort1.length - 1;
+      let _kyoyouNouhaus = [];
+      if (user.kyoyouNouhauSettei[0] == 1) _kyoyouNouhaus.push("頭ノウハウ");
+      if (user.kyoyouNouhauSettei[1] == 1) _kyoyouNouhaus.push("ファンの声援");
+      if (user.kyoyouNouhauSettei[2] == 1) _kyoyouNouhaus.push("S.T.E.P.目標達成");
+      if (user.kyoyouNouhauSettei[3] == 1) _kyoyouNouhaus.push("S.T.E.P.エキシビジョンマッチ");
+      
       while (_n >= 1) {
         for (var i = 0; i < _n; i++) {
           let _irekae = false;
@@ -300,11 +312,11 @@ class Monitor{
           let rightHihyoujisuuWhichCanHikitsugi = 0;
           for (var l = 0; l < leftBook.nouhau.length; l++) {
             if (_hyouji.includes(leftBook.nouhau[l][0] + 1)) leftHyoujisuu++;
-            if (_hyouji.includes(leftBook.nouhau[l][0] + 1) == false && nouhau[leftBook.nouhau[l][0]].canHikitsugi == true) leftHihyoujisuuWhichCanHikitsugi++;
+            if (_hyouji.includes(leftBook.nouhau[l][0] + 1) == false && nouhau[leftBook.nouhau[l][0]].canHikitsugi == true && _kyoyouNouhaus.includes(nouhau[leftBook.nouhau[l][0]].type) == false) leftHihyoujisuuWhichCanHikitsugi++;
           }
           for (var r = 0; r < rightBook.nouhau.length; r++) {
             if (_hyouji.includes(rightBook.nouhau[r][0] + 1)) rightHyoujisuu++;
-            if (_hyouji.includes(rightBook.nouhau[r][0] + 1) == false && nouhau[rightBook.nouhau[r][0]].canHikitsugi == true) rightHihyoujisuuWhichCanHikitsugi++;
+            if (_hyouji.includes(rightBook.nouhau[r][0] + 1) == false && nouhau[rightBook.nouhau[r][0]].canHikitsugi == true && _kyoyouNouhaus.includes(nouhau[rightBook.nouhau[r][0]].type) == false) rightHihyoujisuuWhichCanHikitsugi++;
           }
           
           if(rightHihyoujisuuWhichCanHikitsugi < leftHihyoujisuuWhichCanHikitsugi)_irekae = true;
@@ -688,7 +700,7 @@ class Gamen1 extends Gamen{
             if(_tate[t] == 0)continue;
             let tx = t % 4;
             let ty = Math.floor(t/4);
-            this.sceneItems.push(new Line(33 +(18+ 200*_x  + 33*tx +18)*3/hyoujiLinesuu,24 +(100+ 13+300*_y  + 33*ty-11)*3/hyoujiLinesuu,33 +(18+ 200*_x  + 33*tx +18)*3/hyoujiLinesuu,24 +(100+ 13+300*_y  + 33*ty +22)*3/hyoujiLinesuu));
+            this.sceneItems.push(new Line(37 +(18+ 200*_x  + 33*tx +14)*3/hyoujiLinesuu,24 +(100+ 13+300*_y  + 33*ty-11)*3/hyoujiLinesuu,37 +(18+ 200*_x  + 33*tx +14)*3/hyoujiLinesuu,27 +(100+ 13+300*_y  + 33*ty +20)*3/hyoujiLinesuu));
           }
           
           for (var t = 0; t < _yoko.length; t++) {
@@ -696,7 +708,7 @@ class Gamen1 extends Gamen{
             //if(_tate[t] == 0)continue;
             let tx = t % 5;
             let ty = Math.floor(t / 5);
-            this.sceneItems.push(new Line(33 + (18 + 200 * _x + 33 * tx -15) * 3 / hyoujiLinesuu, 28 + (100 + 13 + 300 * _y + 33 * ty +18) * 3 / hyoujiLinesuu, 33 + (18 + 200 * _x + 33 * tx + 18) * 3 / hyoujiLinesuu, 28 + (100 + 13 + 300 * _y + 33 * ty + 18) * 3 / hyoujiLinesuu));
+            this.sceneItems.push(new Line(37 + (18 + 200 * _x + 33 * tx -19) * 3 / hyoujiLinesuu, 28 + (100 + 13 + 300 * _y + 33 * ty +18) * 3 / hyoujiLinesuu, 37 + (18 + 200 * _x + 33 * tx + 14) * 3 / hyoujiLinesuu, 28 + (100 + 13 + 300 * _y + 33 * ty + 18) * 3 / hyoujiLinesuu));
           }
           
           
@@ -707,8 +719,13 @@ class Gamen1 extends Gamen{
           let _thisHyoujiSettei = [].concat(monitor.gamen[1].hyoujiSettei);
           let _thisBookNouhausuu = _thisBook.nouhau.length  //非表示ノウハウ数の計算に使用。
           let _thisBookNouhausuuWhichCanHikitsugi = 0;  //非表示ノウハウ数の計算に使用
+          let _kyoyouNouhaus = [];
+          if(user.kyoyouNouhauSettei[0] == 1)_kyoyouNouhaus.push("頭ノウハウ");
+          if(user.kyoyouNouhauSettei[1] == 1)_kyoyouNouhaus.push("ファンの声援");
+          if(user.kyoyouNouhauSettei[2] == 1)_kyoyouNouhaus.push("S.T.E.P.目標達成");
+          if(user.kyoyouNouhauSettei[3] == 1)_kyoyouNouhaus.push("S.T.E.P.エキシビジョンマッチ");
           for (var _nouhaux = 0; _nouhaux < _thisBook.nouhau.length; _nouhaux++) {
-            if(nouhau[ _thisBook.nouhau[_nouhaux][0]].canHikitsugi == true && nouhau[_thisBook.nouhau[_nouhaux][0]].type != "S.T.E.P.目標達成" && nouhau[_thisBook.nouhau[_nouhaux][0]].type != "S.T.E.P.エキシビジョンマッチ" && nouhau[_thisBook.nouhau[_nouhaux][0]].type != "頭ノウハウ")_thisBookNouhausuuWhichCanHikitsugi++;
+            if(nouhau[ _thisBook.nouhau[_nouhaux][0]].canHikitsugi == true && _kyoyouNouhaus.includes( nouhau[_thisBook.nouhau[_nouhaux][0]].type) == false)_thisBookNouhausuuWhichCanHikitsugi++;
           }
           let _thisHyoujiNouhausuu = 0; //非表示ノウハウ数の計算に使用。for文の中で加算していく。
           let _thisHyoujiNouhausuuWhichCanHikitsugi = 0; //非表示ノウハウ数の計算に使用。for文の中で加算していく
@@ -733,7 +750,7 @@ class Gamen1 extends Gamen{
           
             if(_thisNouhauLv != 0){
               _thisHyoujiNouhausuu++;
-              if(nouhau[_thisNouhau -1].canHikitsugi == true && nouhau[_thisNouhau -1].type != "S.T.E.P.目標達成" && nouhau[_thisNouhau -1].type != "S.T.E.P.エキシビジョンマッチ" && nouhau[_thisNouhau -1].type != "頭ノウハウ")_thisHyoujiNouhausuuWhichCanHikitsugi++;
+              if(nouhau[_thisNouhau -1].canHikitsugi == true && _kyoyouNouhaus.includes( nouhau[_thisBook.nouhau[_nouhaux][0]].type) == false)_thisHyoujiNouhausuuWhichCanHikitsugi++;
             }
           
           }
@@ -1026,7 +1043,7 @@ class Gamen2 extends Gamen{
           "ソート画面",
           "タグ絞りこみ画面",
           "ノウハウ絞りこみ画面",
-          "ノウハウ表示設定分割線設定"
+          "ノウハウ表示分割線設定"
         ];
     
     this.flag = 0;
@@ -1288,7 +1305,7 @@ class Gamen2 extends Gamen{
       };
       this.sceneItems.push(bookHyoujisuuTxt);
       
-      let nouhauHyoujiSetteiBunkatsuTxt = new Text("ノウハウ表示設定分割線設定", 680, 60 + 50 * 4);
+      let nouhauHyoujiSetteiBunkatsuTxt = new Text("ノウハウ表示分割線設定", 680, 60 + 50 * 4);
       nouhauHyoujiSetteiBunkatsuTxt.touchevent = () => {
         if (nouhauHyoujiSetteiBunkatsuTxt.isTouched(touch)[0] == "touchstart" && nouhauHyoujiSetteiBunkatsuTxt.isTouched(touch)[1] == true && this.wait == 0) {
           this.wait = 1;
@@ -1298,6 +1315,17 @@ class Gamen2 extends Gamen{
         }
       };
       this.sceneItems.push(nouhauHyoujiSetteiBunkatsuTxt);
+      
+      let kyoyouNouhauSetteiTxt = new Text("許容ノウハウ設定", 680, 60 + 50 * 5);
+      kyoyouNouhauSetteiTxt.touchevent = () => {
+        if (kyoyouNouhauSetteiTxt.isTouched(touch)[0] == "touchstart" && kyoyouNouhauSetteiTxt.isTouched(touch)[1] == true && this.wait == 0) {
+          this.wait = 1;
+          setTimeout(() => { this.wait = 0; }, 100);
+          this.setScene(6);
+          monitor.update();
+        }
+      };
+      this.sceneItems.push(kyoyouNouhauSetteiTxt);
       
       
     }else if(_sceneNum == 2){
@@ -1370,7 +1398,7 @@ class Gamen2 extends Gamen{
       };
       this.sceneItems.push(_txt3);
       
-      let _txt4 = new Text("非表示中の引き継ぎノウハウが少ない順(頭、目標達成、エキシビジョンを除く", 680, 60 + 50 * 3, 22);
+      let _txt4 = new Text("非表示中の引き継ぎノウハウが少ない順(許容ノウハウを除く)", 680, 60 + 50 * 3, 22);
       _txt4.max = 18;
       if (monitor.sortNum != 4) _txt4.color = "gray";
       if(monitor.sortNum == 4)_txt4.color = "white";
@@ -1607,21 +1635,27 @@ class Gamen2 extends Gamen{
       };
       this.sceneItems.push(_hihyoujiTxt);
       
-      let _hihyoujiJogai = new Text("非表示中の引き継ぎノウハウをすべて除外設定にする(頭、目標達成、エキシビ以外",680,60+50*2 ,20);
+      let _hihyoujiJogai = new Text("非表示中の引き継ぎノウハウをすべて除外設定にする(許容ノウハウを除く)",680,60+50*2 ,20);
       _hihyoujiJogai.max = 19;
       _hihyoujiJogai.touchevent = ()=>{
         if(_hihyoujiJogai.isTouched(touch)[0] == "touchstart" && _hihyoujiJogai.isTouched(touch)[1] == true && this.wait == 0){
           this.wait = 1;
           setTimeout(() => { this.wait = 0 }, 100);
-          let con = window.confirm("表示設定されていない引き継ぎノウハウ(頭、目標達成、エキシビジョンを除く)をすべて除外設定にしますか?");
+          let con = window.confirm("表示設定されていない引き継ぎノウハウ(許容ノウハウを除く)をすべて除外設定にしますか?");
           if(con == false)return;
           
-          for (var i = 32; i < monitor.gamen[2].nouhauShiboriSettei.length; i++) {
-            if(nouhau[i].canHikitsugi == true && this.hyoujiSettei.includes(i +1) == false && nouhau[i].type != "S.T.E.P.目標達成" &&nouhau[i].type != "S.T.E.P.エキシビジョンマッチ"){
+          let kyoyouNouhaus = [];
+          if(user.kyoyouNouhauSettei[0] == 1)kyoyouNouhaus.push("頭ノウハウ");
+          if(user.kyoyouNouhauSettei[0] == 1)kyoyouNouhaus.push("ファンの声援");
+          if(user.kyoyouNouhauSettei[0] == 1)kyoyouNouhaus.push("S.T.E.P.目標達成");
+          if(user.kyoyouNouhauSettei[0] == 1)kyoyouNouhaus.push("S.T.E.P.エキシビジョンマッチ");
+          
+          for (var i = 0; i < monitor.gamen[2].nouhauShiboriSettei.length; i++) {
+            if(nouhau[i].canHikitsugi == true && this.hyoujiSettei.includes(i +1) == false &&kyoyouNouhaus.includes (nouhau[i].type) == false){
               monitor.gamen[2].nouhauShiboriSettei[i][2] = 1;
             }
           }
-          bookReload(false,true);
+          monitor.bookReload(false,true);
         }
       };
       this.sceneItems.push(_hihyoujiJogai);
@@ -1748,6 +1782,41 @@ class Gamen2 extends Gamen{
         this.sceneItems.push(_button);
       }
       
+    }else if(_sceneNum == 6){
+      //許容ノウハウ設定
+      this.sceneItems = [];
+      
+      let _txtB = new Text("(←戻る)", 680, 60 + 50 * 6 + 40, 22);
+      _txtB.touchevent = () => {
+        if (_txtB.isTouched(touch)[0] == "touchstart" && _txtB.isTouched(touch)[1] == true && this.wait == 0) {
+          this.wait = 1;
+          setTimeout(() => { this.wait = 0; }, 100);
+          this.setScene(1);
+          monitor.update();
+        }
+      };
+      this.sceneItems.push(_txtB);
+      
+      let kyoyouNouhaus = ["頭ノウハウ","ファンの声援","目標達成","エキシビジョンマッチ"];
+      for (var i = 0; i < kyoyouNouhaus.length; i++) {
+        let _txt = new Text(kyoyouNouhaus[i], 680, 60 + 50 * i, 22);
+        _txt.setteiNum = i;
+        if (user.kyoyouNouhauSettei[i] != 1) _txt.color = "gray";
+        if (user.kyoyouNouhauSettei[i] == 1) _txt.color = "white";
+        _txt.touchevent = () => {
+          if (_txt.isTouched(touch)[0] == "touchstart" && _txt.isTouched(touch)[1] == true && this.wait == 0) {
+            this.wait = 1;
+            setTimeout(() => { this.wait = 0; }, 100);
+            if (user.kyoyouNouhauSettei[_txt.setteiNum] != 1) {
+              user.kyoyouNouhauSettei[_txt.setteiNum] = 1;
+            } else {
+              user.kyoyouNouhauSettei[_txt.setteiNum] = 0;
+            }
+            monitor.bookReload();
+          }
+        };
+        this.sceneItems.push(_txt);
+      }
     }
   }
   
