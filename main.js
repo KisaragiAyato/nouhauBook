@@ -750,7 +750,7 @@ class Gamen1 extends Gamen{
           
             if(_thisNouhauLv != 0){
               _thisHyoujiNouhausuu++;
-              if(nouhau[_thisNouhau -1].canHikitsugi == true && _kyoyouNouhaus.includes( nouhau[_thisBook.nouhau[m][0]].type) == false)_thisHyoujiNouhausuuWhichCanHikitsugi++;
+              if(nouhau[_thisNouhau -1].canHikitsugi == true && _kyoyouNouhaus.includes( nouhau[_thisNouhau -1].type) == false)_thisHyoujiNouhausuuWhichCanHikitsugi++;
             }
           
           }
