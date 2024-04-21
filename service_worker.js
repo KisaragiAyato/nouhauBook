@@ -31,10 +31,10 @@ self.addEventListener('install', function (event) {
     caches.open(CACHE_VERSION)
       .then(function (cache) {
         console.log('cache.addAll');
-        cache.addAll(urlsToCache);
+        cache.addAll(urlsToCache)
+          .then(() => self.skipWaiting());
       })
   );
-  event.waitUntil(self.skipWaiting());
 });
 // キャッシュ表示
 self.addEventListener('fetch', function (event) {
