@@ -1,7 +1,7 @@
 // ServiceWorker処理：https://developers.google.com/web/fundamentals/primers/service-workers/?hl=ja
 
 // キャッシュ名とキャッシュファイルの指定
-var CACHE_VERSION = 'pwa-nouhauBookKanri-caches';
+var CACHE_VERSION = 'pwa-nouhauBookKanri-caches01';
 var DISP_VERSION = '1.1';
 var urlsToCache = [
     './index.html',
