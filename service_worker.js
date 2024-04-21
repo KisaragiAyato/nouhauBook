@@ -13,8 +13,8 @@ var urlsToCache = [
 ];
 for (var i = 0; i < nouhau.length; i++) {
   let moji = i +1;
-  if(i>= 0 && i<= 9)moji = "00"+ i;
-  if(i>=10 && i <= 99)moji = "0" + i;
+  if(moji>= 0 && moji<= 9)moji = "00"+ moji;
+  if(moji>=10 && moji <= 99)moji = "0" + moji;
   
   urlsToCache.push('./image/nouhau' + moji + '.png');
 }
