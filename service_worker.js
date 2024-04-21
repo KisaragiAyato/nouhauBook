@@ -1,24 +1,27 @@
 // ServiceWorker処理：https://developers.google.com/web/fundamentals/primers/service-workers/?hl=ja
 
 // キャッシュ名とキャッシュファイルの指定
-var CACHE_VERSION = 'pwa-nouhauBookKanri-caches01';
+var CACHE_VERSION = 'pwa-nouhauBookKanri-cachesV1';
 var DISP_VERSION = '1.1';
-var urlsToCache = [
+var urlsToCache1 = [
     './index.html',
     './style.css',
     './main.js',
     './data.js',
     './textClass.js',
+    './manifest.json',
     './image/app-icon.png'
 ];
+var _nouhauImages = [];
 for (var i = 0; i < nouhau.length; i++) {
-  let moji = i +1;
-  if(moji>= 0 && moji<= 9)moji = "00"+ moji;
-  if(moji>=10 && moji <= 99)moji = "0" + moji;
-  
-  urlsToCache.push('./image/nouhau' + moji + '.png');
+  let moji = i + 1;
+  if (moji >= 0 && moji <= 9) moji = "00" + moji;
+  if (moji >= 10 && moji <= 99) moji = "0" + moji;
+
+  _nouhauImages.push('./image/nouhau' + moji + '.png');
 }
 
+var urlsToCache = urlsToCache1.concat(_nouhauImages);
 
 //https://qiita.com/ichii731/items/0fb38333e8a0f00eb9ff より
 // キャッシュ追加
