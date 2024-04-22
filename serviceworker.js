@@ -2,15 +2,13 @@
 function $(id){return document.getElementById(id)}
 
 // キャッシュ名とキャッシュファイルの指定
-var CACHE_VERSION = 'pwa-nouhauBookKanri-cachesV3';
+var CACHE_VERSION = 'pwa-nouhauBookKanri-cachesV4';
 var urlsToCache1 = [
     'index.html',
     'style.css',
     'main.js',
     'data.js',
     'textClass.js',
-    'manifest.json',
-    'service_worker.js',
     './image/app-icon.png'
 ];
 var _nouhauImages = [];
