@@ -260,7 +260,7 @@
     // ServiceWorker登録：https://developers.google.com/web/fundamentals/primers/service-workers/?hl=ja
     if ('serviceWorker' in navigator) {
   navigator.serviceWorker
-    .register('./service_worker.js',{updateViaCache:'none'})
+    .register('./serviceworker.js',{updateViaCache:'none'})
     .then(registration => {
       // 登録成功
       console.log("service worker could register");
