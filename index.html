@@ -34,7 +34,9 @@
     ・下のボタンを押してindexedDBにデータを保存すると、以下のデータがブラウザに保存されます。 <br>
     [ノウハウブック情報、タグ情報、ノウハウ表示設定、ノウハウ表示設定分割線設定、許容ノウハウ設定、ノウハウ絞りこみ設定] <br>
     ・indexedDBに保存せずにこのサイトから離れると、入力したデータは保持されません。 <br>
+    <!--
     ・また、このサイトはプログレッシブウェブアプリ（PWA）に対応しています。ブラウザからPWAをインストールすることでオフラインでも利用できます。(詳しいインストール方法等は検索してください。)<br>
+    -->
     <br>
     <button onclick="indexedDBAdd()">indexedDBに保存する</button>
     <br>
@@ -252,6 +254,9 @@
     -->
 
   </div>
+  <div id="logdiv" style="display: none">
+    logs about service worker :<br>
+  </div>
   <!-- Project -->
   <script src="data.js"></script>
   <script src="textClass.js"></script>
@@ -260,13 +265,20 @@
     // ServiceWorker登録：https://developers.google.com/web/fundamentals/primers/service-workers/?hl=ja
     if ('serviceWorker' in navigator) {
   navigator.serviceWorker
-    .register('./serviceworker.js',{updateViaCache:'none'})
-    .then(registration => {
+    .register('serviceworker.js',{updateViaCache:'none'})
+    .then((registration) => {
       // 登録成功
+      
+      console.log(registration.installing) ;
       console.log("service worker could register");
+      console.log('scope:', registration.scope);
+      
+      function $(id) {return document.getElementById(id)}
+      $("logdiv").innerText += 'service worker could register/';
       
       registration.onupdatefound = function() {
         console.log('service worker update');
+        $("logdiv").innerText += 'service worker update/';
         registration.update();
         
         
@@ -275,6 +287,8 @@
     .catch(err => {
       // 登録失敗
       console.log("service worker couldn't register");
+      $("logdiv").innerText +="service worker couldn't register/"
+      
   });
 }
 
