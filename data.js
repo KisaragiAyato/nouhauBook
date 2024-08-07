@@ -770,13 +770,13 @@ const nouhau = [
     canHikitsugi: false
   },
   {
-    name: "Lesder適正○",
+    name: "Leader適正○",
     scenario: "G.R.A.D.",
     type: "G.R.A.D.アビリティ",
     canHikitsugi: true
   },
   {
-    name: "Lesder適正◎",
+    name: "Leader適正◎",
     scenario: "G.R.A.D.",
     type: "G.R.A.D.アビリティ",
     canHikitsugi: true
