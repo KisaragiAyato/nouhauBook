@@ -13,7 +13,7 @@ const charactorColor = [
   "#2FC6C6", "#B61131", "#6556B6", "#FDCA50",
   "#6BA885", "#5D2524",
   "#010101", "#B397A9", "#C1B080",
-  "#F175A3", "#DDE8FB"
+  "#F175A3", "#DDE8FB","#ffff00"
 ];
 
 const nouhau = [
