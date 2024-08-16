@@ -2,7 +2,7 @@ function $(id){
   return document.getElementById(id);
 }
 
-const jsVersion = "1.5";
+const jsVersion = "1.6";
 function verHyouki(){
   $("jsVerSpan").innerText = jsVersion;
 }
