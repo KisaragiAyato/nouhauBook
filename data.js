@@ -1615,6 +1615,42 @@ const nouhau = [
     scenario: "G.R.A.D.",
     type: "G.R.A.D.アビリティ",
     canHikitsugi: true
+  },
+  {
+    name: "メンタリスト",
+    scenario: "G.R.A.D.",
+    type: "G.R.A.D.アビリティ",
+    canHikitsugi: true
+  },
+  {
+    name: "ロマンチスト(プロデュースアイテム)",
+    scenario: "everything",
+    type: "プロデュースアイテム",
+    canHikitsugi: true
+  },
+  {
+    name: "メンタリスト(プロデュースアイテム)",
+    scenario: "everything",
+    type: "プロデュースアイテム",
+    canHikitsugi: true
+  },
+  {
+    name: "思い出増加量UP(トワコレ)",
+    scenario: "everything",
+    type: "トワコレ",
+    canHikitsugi: false
+  },
+  {
+    name: "アピールUP最大20%UP(トワコレ)",
+    scenario: "everything",
+    type: "トワコレ",
+    canHikitsugi: false
+  },
+  {
+    name: "アピール値最大10%UP(トワコレ)",
+    scenario: "everything",
+    type: "トワコレ",
+    canHikitsugi: false
   }
   
 ];
