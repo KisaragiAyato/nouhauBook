@@ -12,7 +12,7 @@ var urlsToCache1 = [
     './image/app-icon.png'
 ];
 var _nouhauImages = [];
-for (var i = 0; i < 268; i++) {
+for (var i = 0; i < nouhau.length; i++) {
   let moji = i + 1;
   if (moji >= 0 && moji <= 9) moji = "00" + moji;
   if (moji >= 10 && moji <= 99) moji = "0" + moji;
