@@ -1651,6 +1651,18 @@ const nouhau = [
     scenario: "everything",
     type: "トワコレ",
     canHikitsugi: false
+  },
+  {
+    name: "ロールモデル(G.R.A.D.)",
+    scenario: "G.R.A.D.",
+    type: "G.R.A.D.アビリティ",
+    canHikitsugi: true
+  },
+  {
+    name: "ロールモデル(プロデュースアイテム)",
+    scenario: "everything",
+    type: "プロデュースアイテム",
+    canHikitsugi: true
   }
   
 ];
