@@ -1663,6 +1663,12 @@ const nouhau = [
     scenario: "everything",
     type: "プロデュースアイテム",
     canHikitsugi: true
+  },
+  {
+    name: "スペシャリスト(ボーカル)(G.R.A.D.)",
+    scenario: "G.R.A.D.",
+    type: "G.R.A.D.アビリティ",
+    canHikitsugi: true
   }
   
 ];
