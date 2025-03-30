@@ -1,4 +1,4 @@
-const maxNouhau = 21 ;
+const maxNouhau = 21 ;  //ノウハウブック一冊当たりの最大ノウハウ数
 
 //キャラクターを追加する時はcharactorsとcharactorColorを最後尾に追加
 const charactors = [
@@ -17,7 +17,7 @@ const charactorColor = [
   "#F175A3", "#DDE8FB","#ffff00"
 ];
 
-//ノウハウを追加する時は最後尾に追加
+//ノウハウを追加する時は最後尾に追加。imageフォルダに画像も追加するように。
 const nouhau = [
   {
     name:"vocalUP(頭ノウハウ)",
@@ -1669,18 +1669,180 @@ const nouhau = [
     scenario: "G.R.A.D.",
     type: "G.R.A.D.アビリティ",
     canHikitsugi: true
+  },
+  {
+    name: "スペシャリスト(ダンス)(G.R.A.D.)",
+    scenario: "G.R.A.D.",
+    type: "G.R.A.D.アビリティ",
+    canHikitsugi: true
+  },
+  {
+    name: "スペシャリスト(ビジュアル)(G.R.A.D.)",
+    scenario: "G.R.A.D.",
+    type: "G.R.A.D.アビリティ",
+    canHikitsugi: true
+  },
+  {
+    name: "アイドル(say_Halo)",
+    scenario: "say_Halo",
+    type: "say_Haloアビリティ",
+    canHikitsugi: true
+  },
+  {
+    name: "パッシブスキル延長(say_Halo)",
+    scenario: "say_Halo",
+    type: "say_Haloアビリティ",
+    canHikitsugi: true
+  },
+  {
+    name: "パッシブスキル延長+(say_Halo)",
+    scenario: "say_Halo",
+    type: "say_Haloアビリティ",
+    canHikitsugi: true
+  },
+  {
+    name: "歌姫(say_Halo)",
+    scenario: "say_Halo",
+    type: "say_Haloアビリティ",
+    canHikitsugi: true
+  },
+  {
+    name: "プロダンサー(say_Halo)",
+    scenario: "say_Halo",
+    type: "say_Haloアビリティ",
+    canHikitsugi: true
+  },
+  {
+    name: "トップモデル(say_Halo)",
+    scenario: "say_Halo",
+    type: "say_Haloアビリティ",
+    canHikitsugi: true
+  },
+  {
+    name: "総合能力強化練習(say_Halo)",
+    scenario: "say_Halo",
+    type: "say_Haloアビリティ",
+    canHikitsugi: true
+  },
+  {
+    name: "みんなで休憩(say_Halo)",
+    scenario: "say_Halo",
+    type: "say_Haloアビリティ",
+    canHikitsugi: true
+  },
+  {
+    name: "施設効率相談(say_Halo)",
+    scenario: "say_Halo",
+    type: "say_Haloアビリティ",
+    canHikitsugi: true
+  },
+  {
+    name: "施設効率相談+(say_Halo)",
+    scenario: "say_Halo",
+    type: "say_Haloアビリティ",
+    canHikitsugi: true
+  },
+  {
+    name: "ファーストライブ~Leader~(say_Halo)",
+    scenario: "say_Halo",
+    type: "say_Haloアビリティ",
+    canHikitsugi: true
+  },
+  {
+    name: "ファイナルライブ~Leader~(say_Halo)",
+    scenario: "say_Halo",
+    type: "say_Haloアビリティ",
+    canHikitsugi: true
+  },
+  {
+    name: "ファイナルライブ~Leader+~(say_Halo)",
+    scenario: "say_Halo",
+    type: "say_Haloアビリティ",
+    canHikitsugi: true
+  },
+  {
+    name: "ファーストライブ~Vocal~(say_Halo)",
+    scenario: "say_Halo",
+    type: "say_Haloアビリティ",
+    canHikitsugi: true
+  },
+  {
+    name: "ファイナルライブ~Vocal~(say_Halo)",
+    scenario: "say_Halo",
+    type: "say_Haloアビリティ",
+    canHikitsugi: true
+  },
+  {
+    name: "ファイナルライブ~Vocal+~(say_Halo)",
+    scenario: "say_Halo",
+    type: "say_Haloアビリティ",
+    canHikitsugi: true
+  },
+  {
+    name: "ファーストライブ~Center~(say_Halo)",
+    scenario: "say_Halo",
+    type: "say_Haloアビリティ",
+    canHikitsugi: true
+  },
+  {
+    name: "ファイナルライブ~Center~(say_Halo)",
+    scenario: "say_Halo",
+    type: "say_Haloアビリティ",
+    canHikitsugi: true
+  },
+  {
+    name: "ファイナルライブ~Center+~(say_Halo)",
+    scenario: "say_Halo",
+    type: "say_Haloアビリティ",
+    canHikitsugi: true
+  },
+  {
+    name: "ファーストライブ~Dance~(say_Halo)",
+    scenario: "say_Halo",
+    type: "say_Haloアビリティ",
+    canHikitsugi: true
+  },
+  {
+    name: "ファイナルライブ~Dance~(say_Halo)",
+    scenario: "say_Halo",
+    type: "say_Haloアビリティ",
+    canHikitsugi: true
+  },
+  {
+    name: "ファイナルライブ~Dance+~(say_Halo)",
+    scenario: "say_Halo",
+    type: "say_Haloアビリティ",
+    canHikitsugi: true
+  },
+  {
+    name: "ファーストライブ~Visual~(say_Halo)",
+    scenario: "say_Halo",
+    type: "say_Haloアビリティ",
+    canHikitsugi: true
+  },
+  {
+    name: "ファイナルライブ~Visual~(say_Halo)",
+    scenario: "say_Halo",
+    type: "say_Haloアビリティ",
+    canHikitsugi: true
+  },
+  {
+    name: "ファイナルライブ~Visual+~(say_Halo)",
+    scenario: "say_Halo",
+    type: "say_Haloアビリティ",
+    canHikitsugi: true
   }
   
 ];
 
-const scenarios = ["everything","W.I.N.G.","ファン感謝祭","G.R.A.D.","Landing_Point","S.T.E.P."];
+const scenarios = ["everything","W.I.N.G.","ファン感謝祭","G.R.A.D.","Landing_Point","S.T.E.P.","say_Halo"];
 
 const nouhauTypes = [
   "頭ノウハウ","ファンの声援","プロデュースアイテム","思い出(ノウハウ)","トワコレ","プロデュースアイテム","今がキラキラ!おもいッきりアイドル!","おはよう街角の朝ごはん","HOPPIN_JAM","エレぇベスト","踊っていいとも?増刊号","めざせアイドルNo.1","歌姫楽宴","今夜は帰りたくない!","W.I.N.G.引き継ぎ不可","W.I.N.G.アビリティ","W.I.N.G.パッシブスキル",
     "W.I.N.G.ライブスキル","ファン感謝祭親愛度+","ファン感謝祭引き継ぎ不可",
     "ファン感謝祭期間限定","ファン感謝祭パッシブスキル","G.R.A.D.引き継ぎ不可",
     "G.R.A.D.アビリティ","G.R.A.D.(Vo)","G.R.A.D.(Da)","G.R.A.D.(Vi)","G.R.A.D.(Le)","G.R.A.D.(Ce)","G.R.A.D.期間限定","Landing_Point大成功","Landing_Point(Me)","Landing_Point大成功(アビリティ)","Landing_Point(Vo)","Landing_Point(Da)","Landing_Point(Vi)",
-    "Landing_Point期間限定","S.T.E.P.目標達成","S.T.E.P.エキシビジョンマッチ","Fes_Tours専用"
+    "Landing_Point期間限定","S.T.E.P.目標達成","S.T.E.P.エキシビジョンマッチ","Fes_Tours専用","say_Haloアビリティ"
   ];
   
 const onlyNouhauTypes =[
