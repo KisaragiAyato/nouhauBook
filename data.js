@@ -1,6 +1,7 @@
 const maxNouhau = 21 ;  //ノウハウブック一冊当たりの最大ノウハウ数
 
 //キャラクターを追加する時はcharactorsとcharactorColorを最後尾に追加
+//Pアイドルのみ
 const charactors = [
   "真乃","灯織","めぐる","恋鐘","摩美々","咲耶","結華","霧子","果穂","智代子","樹里","凜世","夏葉","甘奈","甜花","千雪","あさひ","冬優子","愛依","透","円香","小糸","雛菜","にちか","美琴","ルカ","羽那","はるき","ルビー","かな","MEMちょ"
 ];
@@ -1830,6 +1831,12 @@ const nouhau = [
     name: "ファイナルライブ~Visual+~(say_Halo)",
     scenario: "say_Halo",
     type: "say_Haloアビリティ",
+    canHikitsugi: true
+  },
+  {
+    name: "タフネス",
+    scenario: "G.R.A.D.",
+    type: "G.R.A.D.アビリティ",
     canHikitsugi: true
   }
   
