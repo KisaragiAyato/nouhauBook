@@ -74,16 +74,17 @@ canvas.addEventListener('touchend',(event)=>{
 */
 
 canvas.addEventListener('mousedown', (e) => {
-      /*
+      
       const rect = e.target.getBoundingClientRect();
       
       touch.x = Math.round(e.clientX - rect.left);
       touch.y = Math.round(e.clientY - rect.top);
       touch.type = "touchstart";
-      */
+      /*
       touch.x = Math.round(e.offsetX);
       touch.y = Math.round(e.offsetY);
       touch.type = "touchstart";
+      */
 });
 
 /*
