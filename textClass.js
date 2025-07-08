@@ -183,7 +183,7 @@ class Sprite {
     if (_touch.x >= this.x &&
       _touch.x <= this.x + this.width &&
       _touch.y >= this.y &&
-      _touch.y <= this.y + this.width) t = true;
+      _touch.y <= this.y + this.height) t = true;
     return [_touch.type, t];
   
   
