@@ -1838,11 +1838,35 @@ const nouhau = [
     scenario: "G.R.A.D.",
     type: "G.R.A.D.アビリティ",
     canHikitsugi: true
+  },
+  {
+    name: "超える絆(アンティーカ×シーズ)",
+    scenario: "item",
+    type: "プロデュースアイテム",
+    canHikitsugi: true
+  },
+  {
+    name: "超える絆(放クラ×ストレイ)",
+    scenario: "item",
+    type: "プロデュースアイテム",
+    canHikitsugi: true
+  },
+  {
+    name: "一致団結",
+    scenario: "item",
+    type: "プロデュースアイテム",
+    canHikitsugi: true
+  },
+  {
+    name: "結集",
+    scenario: "item",
+    type: "プロデュースアイテム",
+    canHikitsugi: true
   }
   
 ];
 
-const scenarios = ["everything","W.I.N.G.","ファン感謝祭","G.R.A.D.","Landing_Point","S.T.E.P.","say_Halo"];
+const scenarios = ["everything","W.I.N.G.","ファン感謝祭","G.R.A.D.","Landing_Point","S.T.E.P.","say_Halo","item"];
 
 const nouhauTypes = [
   "頭ノウハウ","ファンの声援","プロデュースアイテム","思い出(ノウハウ)","トワコレ","プロデュースアイテム","今がキラキラ!おもいッきりアイドル!","おはよう街角の朝ごはん","HOPPIN_JAM","エレぇベスト","踊っていいとも?増刊号","めざせアイドルNo.1","歌姫楽宴","今夜は帰りたくない!","W.I.N.G.引き継ぎ不可","W.I.N.G.アビリティ","W.I.N.G.パッシブスキル",
