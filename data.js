@@ -1862,6 +1862,12 @@ const nouhau = [
     scenario: "item",
     type: "プロデュースアイテム",
     canHikitsugi: true
+  },
+  {
+    name: "超える絆(アルスト×コメティック)",
+    scenario: "item",
+    type: "プロデュースアイテム",
+    canHikitsugi: true
   }
   
 ];
