@@ -1868,6 +1868,12 @@ const nouhau = [
     scenario: "item",
     type: "プロデュースアイテム",
     canHikitsugi: true
+  },
+  {
+    name:"昂揚(G.R.A.D.)",
+    scenario:"G.R.A.D.",
+    type:"G.R.A.D.アビリティ",
+    canHikitsugi:true
   }
   
 ];
