@@ -1840,21 +1840,21 @@ const nouhau = [
     canHikitsugi: true
   },
   {
-    name: "超える絆(アンティーカ×シーズ)",
-    scenario: "item",
-    type: "プロデュースアイテム",
+    name: "越える絆(アンティーカ×シーズ)",
+    scenario: "G.R.A.D.",
+    type: "G.R.A.D.アビリティ",
     canHikitsugi: true
   },
   {
-    name: "超える絆(放クラ×ストレイ)",
-    scenario: "item",
-    type: "プロデュースアイテム",
+    name: "越える絆(放クラ×ストレイ)",
+    scenario: "G.R.A.D.",
+    type: "G.R.A.D.アビリティ",
     canHikitsugi: true
   },
   {
     name: "一致団結",
-    scenario: "item",
-    type: "プロデュースアイテム",
+    scenario: "G.R.A.D.",
+    type: "G.R.A.D.アビリティ",
     canHikitsugi: true
   },
   {
@@ -1864,9 +1864,9 @@ const nouhau = [
     canHikitsugi: true
   },
   {
-    name: "超える絆(アルスト×コメティック)",
-    scenario: "item",
-    type: "プロデュースアイテム",
+    name: "越える絆(アルスト×コメティック)",
+    scenario: "G.R.A.D.",
+    type: "G.R.A.D.アビリティ",
     canHikitsugi: true
   },
   {
@@ -1874,6 +1874,11 @@ const nouhau = [
     scenario:"G.R.A.D.",
     type:"G.R.A.D.アビリティ",
     canHikitsugi:true
+  },{
+    name: "越える絆(イルミネ×ノクチル)",
+    scenario: "G.R.A.D.",
+    type: "G.R.A.D.アビリティ",
+    canHikitsugi: true
   }
   
 ];
