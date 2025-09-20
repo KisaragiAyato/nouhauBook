@@ -2,7 +2,7 @@
 
 url: https://kisaragiayato.github.io/nouhauBook/ 
 
-現在の最新バージョンは1.13です。
+現在の最新バージョンは1.14です。
 
 html,css javascript使用。
 indexedDB使用。dbNAME:"nouhauBookKanri_DB"
